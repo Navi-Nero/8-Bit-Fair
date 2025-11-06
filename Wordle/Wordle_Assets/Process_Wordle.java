@@ -1,0 +1,152 @@
+/* Handles the complex proccesses
+   Static methods are utilized */
+
+package Games.Wordle_Assets;
+import Games.Input_Handling;
+
+public class Process_Wordle {
+    private final static Input_Handling input = new Input_Handling();
+
+    protected class Verify {
+
+        public static boolean checkString (String verify) {
+            boolean boolResult = false;
+            
+            if (verify.length() != 5) {
+                System.out.println("\nError! Word is not 5 letters! ");
+
+            } else if (verify.matches("^[A-Za-z]+$") == false) {
+                System.out.println("\nError! Word contains non letter characters!");
+
+            } else {
+                boolResult = true;
+            }
+
+            return boolResult;
+        }
+
+        public static void isCorrect (String word, String answer) {
+            final String green = "\u001B[32m";
+            final String yellow = "\u001B[33m";
+            final String clear = "\u001B[0m";
+            final String empty = "\u001B[30m";
+
+            String[] answerList = answer.split("");
+            String[] wordList = word.split("");
+            
+            for (int i = 0; i < 5; i++) {
+                //Check if the individual answer character is an exact match to word character
+                if (wordList[i].compareTo(answerList[i]) == 0) {
+                    System.out.print(green + "\u25A0" + clear + " ");
+
+                //Check if atleast the individual answer character is in the word
+                } else if (word.contains(answerList[i])){
+                    System.out.print(yellow + "\u25A0" + clear + " ");
+
+                } else {
+                    System.out.print(empty + "\u25A0" + clear + " ");
+                }
+            }
+            System.out.println();
+            
+        }
+
+        public static int gameState (String answer, String word, int tries) {
+        if (answer.contentEquals(word)) {
+                System.out.println("\nWINNER WINNER CHICKEN DINNER! ");
+
+            } else if (tries == 0) {
+                System.out.println("\nClose, but no cigar! The correct word was \"" + word + "\"!");
+
+            } else {
+                System.out.print("\nGuess the word! You got " + tries + " tries left!: ");
+                isCorrect(word, answer);
+                return tries;
+
+            }
+            return 0;
+        }
+    
+    public static boolean restartGame () {
+            System.out.println("\nSplendid! Wanna play again? <yes/no>");
+
+            while (true) {
+
+                String response = input.getStr("");
+                response = response.toUpperCase();
+
+                switch (response) {
+
+                    case "YES":
+                        System.out.println("\nWOHOOO! How do you wanna start the game this time?");
+                    return true;
+
+                    case "NO":
+                        System.out.println("\nAww! Until next time!");
+                    return false;
+
+                    default:
+                        System.out.println("Invalid Input!");
+                    break;
+                }
+            }
+        }
+    }
+
+    protected class Proccess {
+
+        private final static Words word = new Words();
+        
+        public static String chooseMode () {
+            int ans = input.getInt("");
+
+            String chosenWord = "";
+
+            switch (ans){
+                case 1:
+
+                do {
+                    chosenWord = input.getStr("\nWhat do you want your friend to guess?");
+                    chosenWord = chosenWord.toUpperCase();
+                    System.out.print("\033[1A\033[2K");
+
+                } while (Verify.checkString(chosenWord) != true);
+
+                System.out.println("Aight, got it!");
+                break;
+
+                case 2:
+                chosenWord = word.getword();
+                break;
+
+                default:
+                System.out.println("Invalid Input!");
+            }
+
+            return chosenWord;
+        }
+
+        public static void prepareGame(String guessWord){
+            int attempts = input.getInt("\nHow many guesses you want to have?");
+
+            String answer = "aaaaa";
+            System.out.print("\nGuess the word! You have " + attempts + " tries left!: ");
+            Verify.isCorrect(guessWord, answer);
+
+            while (attempts != 0) {
+
+                answer = input.getStr("");
+                answer = answer.toUpperCase();
+
+                if (Verify.checkString(answer) == true) {
+                    attempts--;
+
+                } else {
+                    answer = "aaaaa";
+                }
+
+                attempts = Verify.gameState(answer, guessWord, attempts);
+            }
+        }
+    }
+}
