@@ -5,7 +5,7 @@ package Games.Wordle_Assets;
 import Games.Input_Handling;
 
 public class Process_Wordle {
-    private static Input_Handling input = new Input_Handling();
+    private final static Input_Handling input = new Input_Handling();
 
     protected class Verify {
 
