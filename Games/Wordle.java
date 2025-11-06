@@ -6,8 +6,6 @@ public class Wordle extends Process_Wordle {
 
     public static void main(String[] args) {
 
-        Input_Handling input = new Input_Handling();
-
         System.out.println("\nWelcome to wordle! How would you like to start the game?");
 
         boolean restart = true;

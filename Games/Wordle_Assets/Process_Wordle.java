@@ -5,7 +5,7 @@ package Games.Wordle_Assets;
 import Games.Input_Handling;
 
 public class Process_Wordle {
-    private final static Input_Handling input = new Input_Handling();
+    private static Input_Handling input = new Input_Handling();
 
     protected class Verify {
 
@@ -83,6 +83,7 @@ public class Process_Wordle {
 
                     case "NO":
                         System.out.println("\nAww! Until next time!");
+                        input.close();
                     return false;
 
                     default:
@@ -98,6 +99,7 @@ public class Process_Wordle {
         private final static Words word = new Words();
         
         public static String chooseMode () {
+
             int ans = input.getInt("");
 
             String chosenWord = "";
