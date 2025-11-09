@@ -20,35 +20,62 @@ public class Process_Wordle {
 
             } else {
                 boolResult = true;
+
             }
 
             return boolResult;
         }
 
         public static void isCorrect (String word, String answer) {
-            final String green = "\u001B[32m";
-            final String yellow = "\u001B[33m";
-            final String clear = "\u001B[0m";
-            final String empty = "\u001B[30m";
+            final String green = "\u001B[32m\u25A0\u001B[0m ";
+            final String yellow = "\u001B[33m\u25A0\u001B[0m ";
+            final String empty = "\u001B[30m\u25A0\u001B[0m ";
 
-            String[] answerList = answer.split("");
-            String[] wordList = word.split("");
-            
-            for (int i = 0; i < 5; i++) {
-                //Check if the individual answer character is an exact match to word character
-                if (wordList[i].compareTo(answerList[i]) == 0) {
-                    System.out.print(green + "\u25A0" + clear + " ");
+            int length = word.length();
+            String[] result = new String[length];
+            boolean[] correctPos = new boolean[length];
+            boolean[] correctLet = new boolean[length];
 
-                //Check if atleast the individual answer character is in the word
-                } else if (word.contains(answerList[i])){
-                    System.out.print(yellow + "\u25A0" + clear + " ");
+            // First pass: check for correct position (green)
+            for (int i = 0; i < length; i++) {
+                if (answer.charAt(i) == word.charAt(i)) {
+                    result[i] = green;
+                    correctPos[i] = true;
+                    correctLet[i] = true;
 
-                } else {
-                    System.out.print(empty + "\u25A0" + clear + " ");
                 }
             }
-            System.out.println();
+
+            // Second pass: check for correct letter in wrong position (yellow)
+            for (int i = 0; i < length; i++) {
+                if (!correctLet[i]) {
+                    for (int j = 0; j < length; j++) {
+                        if (!correctPos[j] && answer.charAt(i) == word.charAt(j)){
+                            result[i] = yellow;
+                            correctPos[j] = true;
+                            correctLet[i] = true;
+                            break;
+
+                        }
+                    }
+                }
+            }
+
+            // Remaining letters are incorrect (gray)
+            for (int i = 0; i < length; i++) {
+                if (!correctLet[i]) {
+                    result[i] = empty;
+
+                }
+            }
             
+
+            for (int i = 0; i < length; i++) {
+                System.out.print(result[i]);
+            
+            }
+
+        System.out.println();
         }
 
         public static int gameState (String answer, String word, int tries) {
@@ -56,7 +83,7 @@ public class Process_Wordle {
                 System.out.println("\nWINNER WINNER CHICKEN DINNER! ");
 
             } else if (tries == 0) {
-                System.out.println("\nClose, but no cigar! The correct word was \"" + word + "\"!");
+                System.out.println("\nClose, but no cigar! The correct word was \"" + word + "\"!"); 
 
             } else {
                 System.out.print("\nGuess the word! You got " + tries + " tries left!: ");
@@ -71,8 +98,7 @@ public class Process_Wordle {
             System.out.println("\nSplendid! Wanna play again? <yes/no>");
 
             while (true) {
-
-                String response = input.getStr("");
+                String response = input.getStr("x");
                 response = response.toUpperCase();
 
                 switch (response) {
@@ -95,11 +121,9 @@ public class Process_Wordle {
     }
 
     protected class Proccess {
-
         private final static Words word = new Words();
         
         public static String chooseMode () {
-
             int ans = input.getInt("");
 
             String chosenWord = "";
@@ -128,8 +152,8 @@ public class Process_Wordle {
             return chosenWord;
         }
 
-        public static void prepareGame(String guessWord){
-            int attempts = input.getInt("\nHow many guesses you want to have?");
+        public static void prepareGame(String guessWord) {
+            int attempts = input.getInt("\nHow many guesses you want to have?\n");
 
             String answer = "aaaaa";
             System.out.print("\nGuess the word! You have " + attempts + " tries left!: ");
@@ -149,6 +173,10 @@ public class Process_Wordle {
 
                 attempts = Verify.gameState(answer, guessWord, attempts);
             }
+        }
+
+        public static void checkAlpha (String keyword) {
+
         }
     }
 }

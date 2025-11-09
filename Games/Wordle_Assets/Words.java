@@ -2,7 +2,7 @@ package Games.Wordle_Assets;
 
 import Games.Input_Handling;
 
-public class Words extends Process_Wordle {
+public class Words {
     
     private final Input_Handling input = new Input_Handling();
 

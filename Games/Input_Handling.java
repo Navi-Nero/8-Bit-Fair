@@ -21,6 +21,7 @@ public class Input_Handling {
                 getInt = sc.nextInt();
                 sc.nextLine();
                 break;
+
             } else {
                 System.out.println("Invalid input! Please enter an integer.");
                 sc.nextLine();
@@ -37,6 +38,13 @@ public class Input_Handling {
 
     public int randomize(int n) {
         return (int)(Math.random() * n);
+    }
+
+    public String[] reducedArray(String[] array, int size){
+        String[] newArr = new String[size];
+        
+        System.arraycopy(array, 0, newArr, 0, size);
+        return newArr;
     }
 
     public void close() {
