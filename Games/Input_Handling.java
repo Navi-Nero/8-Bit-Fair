@@ -40,13 +40,6 @@ public class Input_Handling {
         return (int)(Math.random() * n);
     }
 
-    public String[] reducedArray(String[] array, int size){
-        String[] newArr = new String[size];
-        
-        System.arraycopy(array, 0, newArr, 0, size);
-        return newArr;
-    }
-
     public void close() {
         sc.close();
     }

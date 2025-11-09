@@ -9,18 +9,18 @@ public class Process_Wordle {
 
     protected class Verify {
 
-        public static boolean checkString (String verify) {
+        public static boolean checkString (String verify, String guess) {
             boolean boolResult = false;
+            int length = guess.length();
             
-            if (verify.length() != 5) {
-                System.out.println("\nError! Word is not 5 letters! ");
+            if (verify.length() != length) {
+                System.out.println("\nError! Word is not " + length + " letters! ");
 
             } else if (verify.matches("^[A-Za-z]+$") == false) {
                 System.out.println("\nError! Word contains non letter characters!");
 
             } else {
                 boolResult = true;
-
             }
 
             return boolResult;
@@ -36,17 +36,14 @@ public class Process_Wordle {
             boolean[] correctPos = new boolean[length];
             boolean[] correctLet = new boolean[length];
 
-            // First pass: check for correct position (green)
             for (int i = 0; i < length; i++) {
                 if (answer.charAt(i) == word.charAt(i)) {
                     result[i] = green;
                     correctPos[i] = true;
                     correctLet[i] = true;
-
                 }
             }
 
-            // Second pass: check for correct letter in wrong position (yellow)
             for (int i = 0; i < length; i++) {
                 if (!correctLet[i]) {
                     for (int j = 0; j < length; j++) {
@@ -55,24 +52,20 @@ public class Process_Wordle {
                             correctPos[j] = true;
                             correctLet[i] = true;
                             break;
-
                         }
                     }
                 }
             }
 
-            // Remaining letters are incorrect (gray)
             for (int i = 0; i < length; i++) {
                 if (!correctLet[i]) {
                     result[i] = empty;
-
                 }
             }
             
 
             for (int i = 0; i < length; i++) {
                 System.out.print(result[i]);
-            
             }
 
         System.out.println();
@@ -89,8 +82,8 @@ public class Process_Wordle {
                 System.out.print("\nGuess the word! You got " + tries + " tries left!: ");
                 isCorrect(word, answer);
                 return tries;
-
             }
+
             return 0;
         }
     
@@ -98,11 +91,10 @@ public class Process_Wordle {
             System.out.println("\nSplendid! Wanna play again? <yes/no>");
 
             while (true) {
-                String response = input.getStr("x");
+                String response = input.getStr("").trim();
                 response = response.toUpperCase();
 
                 switch (response) {
-
                     case "YES":
                         System.out.println("\nWOHOOO! How do you wanna start the game this time?");
                     return true;
@@ -132,11 +124,11 @@ public class Process_Wordle {
                 case 1:
 
                 do {
-                    chosenWord = input.getStr("\nWhat do you want your friend to guess?");
-                    chosenWord = chosenWord.toUpperCase();
+                    chosenWord = input.getStr("\nWhat do you want your friend to guess?\n");
+                    chosenWord = chosenWord.toUpperCase().trim();
                     System.out.print("\033[1A\033[2K");
 
-                } while (Verify.checkString(chosenWord) != true);
+                } while (Verify.checkString(chosenWord, chosenWord) != true);
 
                 System.out.println("Aight, got it!");
                 break;
@@ -154,29 +146,34 @@ public class Process_Wordle {
 
         public static void prepareGame(String guessWord) {
             int attempts = input.getInt("\nHow many guesses you want to have?\n");
+            String placeHolder = "";
 
-            String answer = "aaaaa";
+            for (int i = 0; i <= guessWord.length(); i++){
+                placeHolder = placeHolder.concat("a");
+            }
+
+            String answer = placeHolder;
+
             System.out.print("\nGuess the word! You have " + attempts + " tries left!: ");
             Verify.isCorrect(guessWord, answer);
 
             while (attempts != 0) {
 
-                answer = input.getStr("");
+                answer = input.getStr("").trim();
                 answer = answer.toUpperCase();
 
-                if (Verify.checkString(answer) == true) {
+                if (Verify.checkString(answer, guessWord) == true) {
                     attempts--;
 
                 } else {
-                    answer = "aaaaa";
+                    answer = placeHolder;
                 }
-
+                
                 attempts = Verify.gameState(answer, guessWord, attempts);
             }
         }
 
         public static void checkAlpha (String keyword) {
-
         }
     }
 }

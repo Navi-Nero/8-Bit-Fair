@@ -6,15 +6,15 @@ public class Words {
     
     private final Input_Handling input = new Input_Handling();
 
-    private final String[] words = {"HONEY", "BROAD", "AISLE", "DEBIT", "DRAWN", "OWNER", "WIDEN", "STERN", "FAINT",       //9
-        "CAMEL", "MUSHY", "SPOUT", "FLUNK", "DELAY", "STORM", "BRACE", "ACORN", "MEDIC", "OUNCE", "LOWER", "SCALE",  //12
-        "SHOUT", "SUPER", "FERAL", "APPLE", "HELLO", "GHOST", "WORDS", "LEMON", "MELON", "GRAPE", "PAIRS", "PEERS",  //12
-        "PEARS", "SHIRT", "SHOES", "WATER", "FROGS", "HORSE", "TREES", "TRAIN", "DEEDS", "BRAIN", "FRAME", "BLAME",  //12
-        "SMILE", "TEETH", "PLEAD", "SEEDS", "QUITE", "FLYER", "PHONE", "SHORT", "SHAKE"};                            //9
+    private final String[] words = {"HONEY", "BROAD", "AISLE", "DEBIT", "DRAWN", "OWNER", "WIDEN", "STERN", "FAINT",
+        "CAMEL", "MUSHY", "SPOUT", "FLUNK", "DELAY", "STORM", "BRACE", "ACORN", "MEDIC", "OUNCE", "LOWER", "SCALE",
+        "SHOUT", "SUPER", "FERAL", "APPLE", "HELLO", "GHOST", "WORDS", "LEMON", "MELON", "GRAPE", "PAIRS", "PEERS",
+        "PEARS", "SHIRT", "SHOES", "WATER", "FROGS", "HORSE", "TREES", "TRAIN", "DEEDS", "BRAIN", "FRAME", "BLAME",
+        "SMILE", "TEETH", "PLEAD", "SEEDS", "QUITE", "FLYER", "PHONE", "SHORT", "SHAKE"};                            
 
     public String getword(){
 
-        int i = input.randomize(54);
+        int i = input.randomize(words.length);
 
         String word = words[i];
         return word;
