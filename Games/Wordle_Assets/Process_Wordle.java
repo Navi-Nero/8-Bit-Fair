@@ -63,7 +63,6 @@ public class Process_Wordle {
                 }
             }
             
-
             for (int i = 0; i < length; i++) {
                 System.out.print(result[i]);
             }
@@ -168,7 +167,7 @@ public class Process_Wordle {
                 } else {
                     answer = placeHolder;
                 }
-                
+
                 attempts = Verify.gameState(answer, guessWord, attempts);
             }
         }
