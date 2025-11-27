@@ -1,5 +1,4 @@
 package Games.Wordle_Assets;
-
 import Games.Input_Handling;
 
 public class Words {

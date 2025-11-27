@@ -1,4 +1,4 @@
-/* Handles the complex proccesses
+/* Handles the complex Processes
    Static methods are utilized */
 
 package Games.Wordle_Assets;
@@ -8,22 +8,28 @@ public class Process_Wordle {
     private final static Input_Handling input = new Input_Handling();
 
     protected class Verify {
-
-        public static boolean checkString (String verify, String guess) {
-            boolean boolResult = false;
+        public static boolean checkString (String verify, String guess, boolean is_User_Input) {
             int length = guess.length();
+
+            if (!is_User_Input){
+                boolean is_Alpha_Check = Process.checkAlpha(verify);
+                
+                if (is_Alpha_Check){
+                    return false;
+                }
+            }
             
             if (verify.length() != length) {
                 System.out.println("\nError! Word is not " + length + " letters! ");
 
-            } else if (verify.matches("^[A-Za-z]+$") == false) {
+            } else if (!verify.matches("^[A-Za-z]+$")) {
                 System.out.println("\nError! Word contains non letter characters!");
 
             } else {
-                boolResult = true;
+                return true;
             }
 
-            return boolResult;
+            return false;   
         }
 
         public static void isCorrect (String word, String answer) {
@@ -73,7 +79,7 @@ public class Process_Wordle {
         public static int gameState (String answer, String word, int tries) {
         if (answer.contentEquals(word)) {
                 System.out.println("\nWINNER WINNER CHICKEN DINNER! ");
-
+                
             } else if (tries == 0) {
                 System.out.println("\nClose, but no cigar! The correct word was \"" + word + "\"!"); 
 
@@ -111,9 +117,11 @@ public class Process_Wordle {
         }
     }
 
-    protected class Proccess {
-        private final static Words word = new Words();
-        
+    protected class Process {
+        private static final Words word = new Words();
+        private static final String[] alphabet = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
+        private static String[] unUsedLetters = alphabet.clone();
+
         public static String chooseMode () {
             int ans = input.getInt("");
 
@@ -127,7 +135,7 @@ public class Process_Wordle {
                     chosenWord = chosenWord.toUpperCase().trim();
                     System.out.print("\033[1A\033[2K");
 
-                } while (Verify.checkString(chosenWord, chosenWord) != true);
+                } while (Verify.checkString(chosenWord, chosenWord, true) != true);
 
                 System.out.println("Aight, got it!");
                 break;
@@ -145,23 +153,22 @@ public class Process_Wordle {
 
         public static void prepareGame(String guessWord) {
             int attempts = input.getInt("\nHow many guesses you want to have?\n");
-            String placeHolder = "";
-
-            for (int i = 0; i <= guessWord.length(); i++){
-                placeHolder = placeHolder.concat("a");
-            }
+            String placeHolder = "a".repeat(guessWord.length());
 
             String answer = placeHolder;
 
             System.out.print("\nGuess the word! You have " + attempts + " tries left!: ");
             Verify.isCorrect(guessWord, answer);
+            System.out.print("You can type the word \"ALPHABET\" anytime to see what letters you haven't used yet. \n");
+            System.arraycopy(alphabet, 0, unUsedLetters, 0, 26);
+
 
             while (attempts != 0) {
 
                 answer = input.getStr("").trim();
                 answer = answer.toUpperCase();
 
-                if (Verify.checkString(answer, guessWord) == true) {
+                if (Verify.checkString(answer, guessWord, false) == true) {
                     attempts--;
 
                 } else {
@@ -172,7 +179,31 @@ public class Process_Wordle {
             }
         }
 
-        public static void checkAlpha (String keyword) {
+        //Checks if the input was "ALPHABET" and if it is, prints all unused letters
+        public static boolean checkAlpha (String keyword) {
+            if(keyword.equals("ALPHABET")){
+                System.out.print("\nLetters you have not used are: \n");
+                for (int i = 0; i < 26; i++){
+                    System.out.print(unUsedLetters[i] + " ");
+
+                }
+                System.out.println();
+                return true;
+
+            } else {
+                char[] newLetters = keyword.toCharArray();
+
+                for (char c : newLetters) {
+                    for (int j = 0; j < 26; j++) {
+                        if (c == alphabet[j].charAt(0)) {
+                            unUsedLetters[j] = "-";
+
+                        }
+                    }
+                }
+                return false;
+
+            }
         }
     }
 }

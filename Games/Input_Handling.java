@@ -1,5 +1,4 @@
 package Games;
-
 import java.util.Scanner;
 
 public class Input_Handling {
