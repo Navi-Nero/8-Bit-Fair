@@ -9,7 +9,6 @@ public class Eight_Bit_Fare
 {
     public static void main(String[] args)
     {
-        Input_Handling input = new Input_Handling();
         int gameChoice = 0;
 
         System.out.println("\n╔════════════════════════════════════╗");
@@ -18,7 +17,10 @@ public class Eight_Bit_Fare
 
         while (gameChoice != 4)
         {
-            gameChoice = input.getInt("\nWhich game do you wanna play?\n" +
+            // Create a fresh input handler for the menu
+            Input_Handling menuInput = new Input_Handling();
+            
+            gameChoice = menuInput.getInt("\nWhich game do you wanna play?\n" +
                     "[1] Poker\n" +
                     "[2] Monopoly\n" +
                     "[3] Wordle\n" +
@@ -43,7 +45,7 @@ public class Eight_Bit_Fare
 
                 case 4:
                     System.out.println("\nThanks for playing! See you next time!");
-                    input.close();
+                    menuInput.close();
                     break;
 
                 default:
