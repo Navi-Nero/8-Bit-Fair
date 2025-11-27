@@ -1,6 +1,8 @@
 package Games.Wordle_Assets;
 import Games.Input_Handling;
 
+// Word bank for Wordle - stores all possible words to guess
+// Randomly picks one when the player chooses to play with a random word
 public class Words {
     
     private final Input_Handling input = new Input_Handling();

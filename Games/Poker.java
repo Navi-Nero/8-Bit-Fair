@@ -1,7 +1,7 @@
 package Games;
 import Games.Poker_Assets.MyPokerGame;
 
-class Poker {
+public class Poker {
     public static void main(String args[]) 
     {
 	MyPokerGame mypokergame;

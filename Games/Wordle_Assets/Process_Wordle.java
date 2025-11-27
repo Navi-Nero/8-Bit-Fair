@@ -1,13 +1,15 @@
-/* Handles the complex Processes
-   Static methods are utilized */
+
 
 package Games.Wordle_Assets;
 import Games.Input_Handling;
 
+// Handles all the game logic for Wordle
+// Contains static inner classes for verification, game flow, and word picking
 public class Process_Wordle {
     private final static Input_Handling input = new Input_Handling();
 
-    protected class Verify {
+    // Verifies guesses and checks if they're valid words
+    public static class Verify {
         public static boolean checkString (String verify, String guess, boolean is_User_Input) {
             int length = guess.length();
 
@@ -33,9 +35,9 @@ public class Process_Wordle {
         }
 
         public static void isCorrect (String word, String answer) {
-            final String green = "\u001B[32m\u25A0\u001B[0m ";
-            final String yellow = "\u001B[33m\u25A0\u001B[0m ";
-            final String empty = "\u001B[30m\u25A0\u001B[0m ";
+            final String green = "\u001B[32m\u25A0\u001B[0m ";   // correct letter, correct position
+            final String yellow = "\u001B[33m\u25A0\u001B[0m ";  // correct letter, wrong position
+            final String empty = "\u001B[30m\u25A0\u001B[0m ";   // letter not in word
 
             int length = word.length();
             String[] result = new String[length];
@@ -92,6 +94,7 @@ public class Process_Wordle {
             return 0;
         }
     
+    // Ask if the player wants to play another round
     public static boolean restartGame () {
             System.out.println("\nSplendid! Wanna play again? <yes/no>");
 
@@ -117,11 +120,13 @@ public class Process_Wordle {
         }
     }
 
-    protected class Process {
+    // Handles game setup and main game loop
+    public static class Process {
         private static final Words word = new Words();
         private static final String[] alphabet = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
-        private static String[] unUsedLetters = alphabet.clone();
+        private static String[] unUsedLetters = alphabet.clone();  // Track which letters player has used
 
+        // Player picks how to start - enter their own word or use a random one
         public static String chooseMode () {
             int ans = input.getInt("");
 
@@ -180,6 +185,7 @@ public class Process_Wordle {
         }
 
         //Checks if the input was "ALPHABET" and if it is, prints all unused letters
+        // Player can type "ALPHABET" to see which letters they haven't used yet
         public static boolean checkAlpha (String keyword) {
             if(keyword.equals("ALPHABET")){
                 System.out.print("\nLetters you have not used are: \n");
