@@ -59,6 +59,8 @@ public class Board
         
         cards.shuffle();
 
+        System.out.print("Welcome to Monopoly! A game which simulates capitalism! (Requires atleast 2 players)");
+
         int player_Choice = 0;
 
         while (player_Choice != 4) 
