@@ -1,7 +1,7 @@
-import Games.Poker;
-import Games.Monopoly;
-import Games.Wordle;
 import Games.Input_Handling;
+import Games.Monopoly;
+import Games.Poker;
+import Games.Wordle;
 
 // Main menu for the 8-Bit Fare arcade
 // Lets you choose which game to play: Poker, Monopoly, or Wordle
@@ -12,7 +12,7 @@ public class Eight_Bit_Fare
         int gameChoice = 0;
 
         System.out.println("\n╔════════════════════════════════════╗");
-        System.out.println("║     WELCOME TO 8-BIT FARE ARCADE   ║");
+        System.out.println("║     WELCOME TO 8-BIT FAIR ARCADE   ║");
         System.out.println("╚════════════════════════════════════╝");
 
         while (gameChoice != 4)
@@ -28,6 +28,7 @@ public class Eight_Bit_Fare
 
             switch (gameChoice)
             {
+
                 case 1:
                     System.out.println("\nStarting Poker...\n");
                     Poker.main(args);
@@ -50,6 +51,7 @@ public class Eight_Bit_Fare
 
                 default:
                     System.out.println("Invalid choice. Try again.");
+                    
             }
         }
     }

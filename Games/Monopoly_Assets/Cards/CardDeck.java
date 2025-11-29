@@ -52,13 +52,16 @@ public class CardDeck {
     }
 
     // Randomize both decks
-    public void shuffle() {
+    public void shuffle() 
+    {
         Collections.shuffle(chanceDeck);
         Collections.shuffle(communityChestDeck);
     }
 
     // Draw from chance deck, put back at end if not keepable
-    public CardData drawChanceCard() {
+    public CardData drawChanceCard() 
+    {
+
         CardData card = chanceDeck.removeFirst();
 
         if (!card.isKeepable()) {
@@ -69,10 +72,12 @@ public class CardDeck {
     }
 
     // Draw from community chest deck, put back at end if not keepable
-    public CardData drawCommunityChestCard() {
+    public CardData drawCommunityChestCard() 
+    {
         CardData card = communityChestDeck.removeFirst();
 
-        if (!card.isKeepable()) {
+        if (!card.isKeepable()) 
+        {
             communityChestDeck.addLast(card);
         }
         
@@ -80,12 +85,14 @@ public class CardDeck {
     }
 
     // Player returns a keepable card (like Get Out of Jail Free)
-    public void returnChanceCard(CardData card) {
+    public void returnChanceCard(CardData card) 
+    {
         chanceDeck.addLast(card);
     }
 
     // Player returns a keepable community chest card
-    public void returnCommunityChestCard(CardData card) {
+    public void returnCommunityChestCard(CardData card) 
+    {
         communityChestDeck.addLast(card);
     }
 }

@@ -46,7 +46,7 @@ public class PayoutManager {
         System.out.println("\n\n");
         System.out.println("Payout Table            Multiplier   ");
         System.out.println("=======================================");
-        for (int i = handTypes.length - 1; i >= 0; i--) {
+        for (int i = handTypes.length - 2; i >= 0; i--) {
             System.out.println(String.format("%-20s |\t%d", handTypes[i], multipliers[i]));
         }
         System.out.println("\n-----------------------------------");
