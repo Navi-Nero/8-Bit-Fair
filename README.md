@@ -58,6 +58,7 @@ The system provides:
 ---
 
 ## 📁 Program Structure
+
 ```
 Main/
 8-Bit-Fare/
@@ -84,6 +85,7 @@ Main/
 ├── out/                                      # Build output (generated during compilation)
 └── README.md                              # Project documentation
 
+```
 ---
 
 ## 🎮 Gameplay Guide
