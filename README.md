@@ -71,3 +71,31 @@ This is achieved through a modular and scalable design, where each game is devel
 **Exit System**  
 - User-friendly exit option from the main menu  
 - Graceful shutdown of input handler
+
+🏗️ **OOP Concepts Applied in 8-Bit Fare**
+
+**1. Inheritance**  
+- `Game` (abstract) → `Poker`, `Monopoly`, `Wordle` (concrete classes)  
+- Shared components like `Board`, `Process_Wordle`, and `MyPokerGame` inherit from base classes for reusable logic  
+
+**2. Polymorphism**  
+- Abstract/game interface methods implemented per game: `start()`, `playTurn()`, `processInput()`  
+- Main menu calls methods on abstract `Game` type; runtime selects the chosen game’s implementation  
+- Input handling adapts to different game rules  
+
+**3. Encapsulation**  
+- Game data (e.g., player hands, board positions, guessed words) kept private inside each class  
+- Public getter/setter methods for accessing/modifying game state  
+- Input_Handling class encapsulates all user input validation  
+
+**4. Abstraction**  
+- Abstract classes and interfaces hide game logic details, exposing simple methods like `start()`, `play()`, or `restart()`  
+- Complex operations (card dealing, board movement, word checking) hidden behind simple method calls  
+- Reusable utility packages for text styling and input management  
+
+**5. Composition**  
+- `Game` objects contain other components:  
+  - `Poker` contains `Deck` and `Player` objects  
+  - `Monopoly` contains `Board`, `Property`, and `Player` objects  
+  - `Wordle` contains `WordList` and `PlayerGuess` objects  
+- Main arcade menu combines multiple `Game` objects to provide a unified experience
