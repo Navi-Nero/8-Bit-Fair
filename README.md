@@ -207,8 +207,8 @@ This property is unowned. Do you want to buy it? (Y/N): Y
 You bought Boardwalk for $400. Balance: $1100
 
 End of turn. Press Enter to continue...
----
----
+```
+```
 ====================================
             POKER TABLE
 ====================================
