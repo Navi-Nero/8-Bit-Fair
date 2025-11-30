@@ -57,32 +57,61 @@ The system provides:
 
 ---
 
-## 🏗️ Program Structure
+## 📁 Program Structure
 
-### 📁 Project Folder Structure
+```
+Main/
+├── Main.java                          # Application entry point
+├── game/
+│   ├── Game.java                      # Main menu, title animation, game flow
+│   ├── GameMenu.java                  # Character creation, path selection
+│   └── BattleSystem.java              # Turn-based combat loop engine
+├── worldBuilder/
+│   ├── WorldMap.java                  # Builds West & East paths with towns
+│   └── Town.java                      # Town logic, enemy encounters, progression
+├── character/
+│   ├── Character.java                 # Abstract base class (stats, debuffs)
+│   ├── player/
+│   │   ├── Player.java                # Abstract player class (inventory, leveling)
+│   │   └── classes/                   # 5 concrete player classes
+│   │       ├── Warrior.java           # Tank class with stamina
+│   │       ├── Bruid.java             # Balanced fighter
+│   │       ├── Mage.java              # Glass cannon with MP
+│   │       ├── TagalogMonk.java       # Support/hybrid class
+│   │       └── Thief.java             # High-damage, high-speed assassin
+│   └── enemy/
+│       ├── Enemy.java                 # Abstract enemy class (loot, XP)
+│       └── subclasses/                # 31 concrete enemy types
+│           ├── TanimGuardian.java
+│           ├── HabhabBandit.java
+│           ├── LucenaPirate.java
+│           ├── PortRat.java
+│           ├── HarborSentinel.java    # Miniboss
+│           ├── BakeryGremlin.java
+│           ├── HeritageWraith.java
+│           ├── DonMariano.java        # West path final boss
+│           ├── QueenAmihan.java       # East path final boss
+│           └── [21 more...]
+├── item/
+│   ├── Item.java                      # Abstract item base class
+│   └── [23 concrete items]
+│       ├── Bibingka.java              # +25 HP, remove debuffs
+│       ├── Lambanog.java              # Spirit drink
+│       ├── PugonCoffee.java           # Coffee item
+│       └── [20 more...]
+└── styles/
+    ├── animationHub/
+    │   ├── TypeWriter.java            # Typewriter text animation
+    │   └── LoadingDots.java           # Loading animation
+    ├── textColor/
+    │   └── TextColorHub.java          # ANSI color codes (RED, GREEN, YELLOW, etc.)
+    ├── printAlignmentHub/
+    │   └── CenterHub.java             # Text centering & right alignment
+    └── clearScreen/
+        └── ClearScreen.java           # Cross-platform terminal clearing
+```
 
-8-Bit-Fare/
-│── Games/
-│ ├── ArcadeSystem.java
-│ ├── Poker/
-│ │ ├── Poker.java
-│ │ ├── MyPokerGame.java
-│ │ └── Poker_Assets/
-│ ├── Monopoly/
-│ │ ├── Monopoly.java
-│ │ ├── Board.java
-│ │ ├── Dice.java
-│ │ └── Bank.java
-│ └── Wordle/
-│ ├── Wordle.java
-│ ├── Process_Wordle.java ← UPDATED FILE NAME
-│ └── Wordle_Assets/
-│── utils/
-│ ├── Input_Handling.java
-│ ├── Screen.java
-│ └── TextColor.java
-│── out/
-│── README.md
+---
 
 
 ## 🎮 Gameplay Guide
