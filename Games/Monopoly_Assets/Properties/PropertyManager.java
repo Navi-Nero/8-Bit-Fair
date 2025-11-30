@@ -36,9 +36,9 @@ public class PropertyManager {
         addProperty(13, colorize(PURPLE, "States Avenue"),        "Pink", 140, new int[]{10, 50, 150, 450, 625, 750});
         addProperty(14, colorize(PURPLE, "Virginia Avenue"),      "Pink", 160, new int[]{12, 60, 180, 500, 700, 900});
 
-        addProperty(16, colorize(WHITE, "St. James Place"),        "Orange", 180, new int[]{14, 70, 200, 550, 750, 950});
-        addProperty(18, colorize(WHITE, "Tennessee Avenue"),       "Orange", 180, new int[]{14, 70, 200, 550, 750, 950});
-        addProperty(19, colorize(WHITE, "New York Avenue"),        "Orange", 200, new int[]{16, 80, 220, 600, 800, 1000});
+        addProperty(16, colorize(WHITE, "St. James Place"),        "White", 180, new int[]{14, 70, 200, 550, 750, 950});
+        addProperty(18, colorize(WHITE, "Tennessee Avenue"),       "White", 180, new int[]{14, 70, 200, 550, 750, 950});
+        addProperty(19, colorize(WHITE, "New York Avenue"),        "White", 200, new int[]{16, 80, 220, 600, 800, 1000});
 
         addProperty(21, colorize(RED, "Kentucky Avenue"),         "Red", 220, new int[]{18, 90, 250, 700, 875, 1050});
         addProperty(23, colorize(RED, "Indiana Avenue"),          "Red", 220, new int[]{18, 90, 250, 700, 875, 1050});

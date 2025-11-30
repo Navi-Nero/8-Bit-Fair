@@ -15,7 +15,7 @@ public class CardDeck {
 
         // Chance cards
         chanceDeck.add(new CardData("Advance to Boardwalk", false));
-        chanceDeck.add(new CardData("Advance to Go (Collect $200)", false));
+        chanceDeck.add(new CardData("Advance to Go", false));
         chanceDeck.add(new CardData("Advance to Illinois Avenue", false));
         chanceDeck.add(new CardData("Advance to St. Charles Place", false));
         chanceDeck.add(new CardData("Advance to nearest Railroad", false));

@@ -23,7 +23,7 @@ public class SpecialTileManager
         specialTiles.add(new SpecialTileData(17,"Community Chest", "Draw a Community Chest card."));
         specialTiles.add(new SpecialTileData(36,"Chance", "Draw a Chance card."));
         specialTiles.add(new SpecialTileData(33,"Community Chest", "Draw a Community Chest card."));
-        specialTiles.add(new SpecialTileData(4,"Income Tax", "Pay $200 or 10% of your total worth."));
+        specialTiles.add(new SpecialTileData(4,"Income Tax", "Pay $200."));
         specialTiles.add(new SpecialTileData(38,"Luxury Tax", "Pay $100."));
         specialTiles.add(new SpecialTileData(20,"Free Parking", "No effect."));
     }
