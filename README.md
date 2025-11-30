@@ -82,7 +82,10 @@ Main/
 │   ├── Screen.java                           # Screen clearing & formatting utilities
 │   └── TextColor.java                        # ANSI color codes for stylized console output
 ├── out/                                      # Build output (generated during compilation)
-└── README.md                                  # Project documentation
+└── README.md                              # Project documentation
+
+---
+
 ## 🎮 Gameplay Guide
 
 ### **Starting the Arcade**
@@ -96,6 +99,9 @@ Main/
 - Shared styles for colors, animations, and screen behavior  
 
 ---
+
+
+
 
 ## 🃏 Poker Game Guide (`Poker.java`)
 
@@ -118,7 +124,6 @@ Managed by `MyPokerGame.play()`:
 - Option to continue or return to Arcade  
 
 ---
-
 ## 🏠 Monopoly Game Guide (`Monopoly.java`)
 
 ### Turn Sequence (via `Board.playerTurn()`)
