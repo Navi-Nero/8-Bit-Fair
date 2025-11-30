@@ -83,7 +83,7 @@ Main/
 │   ├── Screen.java                           # Screen clearing & formatting utilities
 │   └── TextColor.java                        # ANSI color codes for stylized console output
 ├── out/                                      # Build output (generated during compilation)
-└── README.md                              # Project documentation
+└── README.md                                 # Project documentation
 
 ```
 ---
