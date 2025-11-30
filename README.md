@@ -36,7 +36,7 @@
 
 ## 📌 Overview
 
-**8-Bit Fare** is a console-based mini-arcade system that brings together three classic-inspired games—**Poker**, **Monopoly**, and **Wordle**—into one unified program.  
+**8-Bit Fare** is a console-based mini-arcade system that brings together three classic-inspired games**Poker**, **Monopoly**, and **Wordle**into one unified program.  
 Designed with a strong emphasis on Object-Oriented Programming (OOP), the system showcases how multiple independent games can coexist, interact, and operate smoothly within a single application structure.
 
 The program features a centralized main menu where players can easily switch between games without restarting the system.  
