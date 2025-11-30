@@ -388,49 +388,4 @@ Round 3: Winning Guess
     Output: "Congratulations! You guessed the word in 3 attempts!"
     [System then prompts if player wants to restart or exit]
 
-## 🕹️ Sample Output
-======================================
-     WELCOME TO 8-BIT-FAIR ARCADE
-======================================
-
-Choose a game to play:
-
-[1] POKER (MyPokerGame)
-[2] MONOPOLY
-[3] WORDLE
-[4] EXIT
-
-Enter your choice: 3
-
-======================================
-             WORDLE START
-======================================
-
-Welcome to Wordle! How would you like to start?
-1. Have another player enter the word to guess.
-2. Generate a random word.
-
-Enter choice: 2
-[LoadingDots animation] Generating random word...
-
-Guess the 5-letter word (6 attempts remaining):
-Attempt 1/6: Enter guess: LEARN
-Invalid input! Word must be 5 letters long.
-
-Attempt 1/6: Enter guess: TABLE
-
-[The Process_Wordle logic displays the colored feedback]:
-T A B L E
-\u001B[30;43m T \u001B[0m \u001B[30;42m A \u001B[0m \u001B[30;41m B \u001B[0m \u001B[30;42m L \u001B[0m \u001B[30;41m E \u001B[0m
-(A and L are correct and in the right spot, assuming the word is P L A Y S)
-
-Attempt 2/6: Enter guess: PLAYS
-
-[TypewriterText animation] Processing...
-\u001B[30;42m P \u001B[0m \u001B[30;42m L \u001B[0m \u001B[30;42m A \u001B[0m \u001B[30;42m Y \u001B[0m \u001B[30;42m S \u001B[0m
-
-Congratulations! You guessed the word in 2 attempts!
-
-Do you want to play again? (Y/N): N
-Returning to Arcade Menu...
 
