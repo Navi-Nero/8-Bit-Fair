@@ -100,36 +100,35 @@ This is achieved through a modular and scalable design, where each game is devel
   - `Wordle` contains `WordList` and `PlayerGuess` objects  
 - Main arcade menu combines multiple `Game` objects to provide a unified experience
 
-  📁 **Program Structure – 8-Bit Fare**
-
-Eight_Bit_Fare/
-├── Main.java # Application entry point, launches arcade menu
+ Eight_Bit_Fare/
+├── Main.java                          # Application entry point, launches arcade menu
 ├── Games/
-│ ├── Eight_Bit_Fare.java # Main menu: choose Poker, Monopoly, or Wordle
-│ ├── Input_Handling.java # Handles user input & randomization
-│ ├── Monopoly.java # Entry point for Monopoly game
-│ ├── Poker.java # Entry point for Poker game
-│ ├── Wordle.java # Entry point for Wordle game
-│ └── Monopoly_Assets/
-│ ├── Board.java # Main Monopoly board and game controller
-│ ├── Bank.java # Handles money transactions and rent
-│ ├── Dice.java # Dice roller and doubles checker
-│ ├── Players/
-│ │ └── PlayerData.java # Player info (name, money, position)
-│ ├── Properties/ # Property classes
-│ ├── Cards/ # Chance & Community Chest card classes
-│ └── Special_Tiles/ # Tax, Jail, and other special tiles
-│ └── Poker_Assets/
-│ └── MyPokerGame.java # Manages Poker gameplay, hands, and flow
-│ └── Wordle_Assets/
-│ └── Process_Wordle.java # Handles Wordle game logic, word selection, validation
+│   ├── Eight_Bit_Fare.java            # Main menu: choose Poker, Monopoly, or Wordle
+│   ├── Input_Handling.java            # Handles user input & randomization
+│   ├── Monopoly.java                  # Entry point for Monopoly game
+│   ├── Poker.java                     # Entry point for Poker game
+│   ├── Wordle.java                    # Entry point for Wordle game
+│   ├── Monopoly_Assets/
+│   │   ├── Board.java                 # Main Monopoly board and game controller
+│   │   ├── Bank.java                  # Handles money transactions and rent
+│   │   ├── Dice.java                  # Dice roller and doubles checker
+│   │   ├── Players/
+│   │   │   └── PlayerData.java        # Player info (name, money, position)
+│   │   ├── Properties/               # Property classes
+│   │   ├── Cards/                    # Chance & Community Chest card classes
+│   │   └── Special_Tiles/            # Tax, Jail, and other special tiles
+│   ├── Poker_Assets/
+│   │   └── MyPokerGame.java           # Manages Poker gameplay, hands, and flow
+│   └── Wordle_Assets/
+│       └── Process_Wordle.java        # Handles Wordle game logic, word selection, validation
 └── styles/
-├── animationHub/
-│ ├── TypeWriter.java # Typewriter text animation
-│ └── LoadingDots.java # Loading animation
-├── textColor/
-│ └── TextColorHub.java # ANSI color codes (RED, GREEN, YELLOW, etc.)
-├── printAlignmentHub/
-│ └── CenterHub.java # Text centering & right alignment
-└── clearScreen/
-└── ClearScreen.java # Cross-platform terminal clearing
+    ├── animationHub/
+    │   ├── TypeWriter.java            # Typewriter text animation
+    │   └── LoadingDots.java           # Loading animation
+    ├── textColor/
+    │   └── TextColorHub.java          # ANSI color codes (RED, GREEN, YELLOW, etc.)
+    ├── printAlignmentHub/
+    │   └── CenterHub.java             # Text centering & right alignment
+    └── clearScreen/
+        └── ClearScreen.java           # Cross-platform terminal clearing
+
