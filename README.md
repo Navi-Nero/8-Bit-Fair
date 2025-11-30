@@ -393,11 +393,11 @@ Round 3: Winning Guess
 ### Development
 Developed as a comprehensive Java educational project demonstrating OOP principles, design patterns, and game architecture.
 
-| | Name | Role |
-|----------|----------|----------|
-| <img src="images/isaac.jpg" width="120"> | Quinto, Isaac | Lead Developer |
-| <img src="images/andrei.jpg" width="120"> | Jasareno, Andrei | Developer / System Designer |
-| <img src="images/lenard.jpg" width="120"> | Casilao, Lenard | Developer / Tester |
+| Name | Role |
+|----------|----------|
+| Quinto, Isaac | Lead Developer |
+| Jasareno, Andrei | Developer / System Designer |
+| Casilao, Lenard | Developer / Tester |
 
 # 📞 Support & Contribution
 
