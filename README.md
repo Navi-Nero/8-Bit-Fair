@@ -58,26 +58,29 @@ The system provides:
 ---
 
 ## 🏗️ Program Structure
+
+### 📁 Project Folder Structure
+
 8-Bit-Fare/
 │── Games/
-│   ├── ArcadeSystem.java
-│   ├── Poker/
-│   │   ├── Poker.java
-│   │   ├── MyPokerGame.java
-│   │   └── Poker_Assets/
-│   ├── Monopoly/
-│   │   ├── Monopoly.java
-│   │   ├── Board.java
-│   │   ├── Dice.java
-│   │   └── Bank.java
-│   └── Wordle/
-│       ├── Wordle.java
-│       ├── Process_Wordle.java   ← UPDATED FILE NAME
-│       └── Wordle_Assets/
+│ ├── ArcadeSystem.java
+│ ├── Poker/
+│ │ ├── Poker.java
+│ │ ├── MyPokerGame.java
+│ │ └── Poker_Assets/
+│ ├── Monopoly/
+│ │ ├── Monopoly.java
+│ │ ├── Board.java
+│ │ ├── Dice.java
+│ │ └── Bank.java
+│ └── Wordle/
+│ ├── Wordle.java
+│ ├── Process_Wordle.java ← UPDATED FILE NAME
+│ └── Wordle_Assets/
 │── utils/
-│   ├── Input_Handling.java
-│   ├── Screen.java
-│   └── TextColor.java
+│ ├── Input_Handling.java
+│ ├── Screen.java
+│ └── TextColor.java
 │── out/
 │── README.md
 
