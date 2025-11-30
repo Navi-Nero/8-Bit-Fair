@@ -141,19 +141,72 @@ Continuous Play: `Verify.restartGame()` prompts player for another round
 Warrior enters Lucena Town
     └─ Encounters: Port Rat, Lucena Pirate (miniboss)
 
-Round 1: Player Isaac vs Unowned Property
-    Isaac lands on Mediterranean Avenue (Price: $60)
-    
-    Bank Check (in `Bank.java`): playerCanBuyProperty(Isaac, 60) -> TRUE
-    
-    Prompt: Buy Mediterranean Avenue for $60? (Y/N)
-    User Input: Y
-    
-    Bank Transaction:
-        playerBuyProperty(Isaac, 60):
-        Isaac's Money: 1500 -> 1440
-        Bank Money increases by $60
-        
-    [Monopoly Menu appears for player's next action...]
+## 🎮 Gameplay Guide
 
----
+### Starting the Arcade
+
+Run `java -cp out Games.ArcadeSystem`
+View the central menu with choices for three games
+Choose: (1) Poker, (2) Monopoly, (3) Wordle, (4) Exit
+
+### Core Utilities and Input
+
+Centralized Input: `Input_Handling.java` ensures all inputs are validated
+Game Flow: `ArcadeSystem` manages the overall loop; individual game classes control their flow
+
+### Game Instructions
+
+#### 🃏 Poker Game
+
+Flow: `MyPokerGame.play()` handles dealing, betting, and hand resolution
+Configuration: Starts with default settings but accepts custom configuration
+
+#### 🏠 Monopoly Game
+
+Setup: Requires at least two players
+Display: Property colors are shown using **ANSI color codes**
+Player Turn:
+( 1 ) Roll Dice - `Dice.rollDice()` is called, player moves
+( 2 ) Check for Doubles - Three consecutive doubles sends player to jail
+( 3 ) Bank Transaction - `Bank.java` handles all purchases, rent, and taxes
+( 4 ) Monopoly Menu - Allows player to Check Stats, Upgrade Property, or End Turn
+
+#### 🟩 Wordle Game
+
+Starting Mode: Choose between another player entering the word or generating a random word
+Logic: `Wordle` class extends `Process_Wordle` for core game logic
+Continuous Play: `Verify.restartGame()` prompts player for another round
+
+### 📊 Example Poker Scenario (MyPokerGame)
+
+Player 'Andrei' enters Poker Game with a starting balance of $1000
+
+Round 1: Initial Bet
+    MyPokerGame.play() method initializes hand
+    
+    Prompt: Enter your ante bet (Minimum $20)
+    User Input: 50
+    
+    Betting Logic:
+        Andrei's Money: $1000 -> $950
+    
+    MyPokerGame: Player receives initial 5-card hand: [Ace of Spades, Ace of Hearts, 8 of Diamonds, 3 of Clubs, King of Spades]
+
+Round 2: Discard and Draw
+    Andrei's Hand Status: Pair of Aces
+    
+    Prompt: Which cards to discard? (e.g., 3, 4, 5 for 8, 3, K)
+    User Input: 3, 4, 5
+    
+    MyPokerGame: Discards (8D, 3C, KS) and draws three new cards: [Ace of Clubs, 7 of Hearts, 7 of Diamonds]
+
+Round 3: Final Hand and Payout
+    Andrei's Final Hand: [Ace of Spades, Ace of Hearts, Ace of Clubs, 7 of Hearts, 7 of Diamonds]
+    Hand Rank: **Full House** (Aces full of Sevens)
+    
+    MyPokerGame: Payout calculated based on Full House odds (e.g., 9:1)
+    
+    Andrei's Winnings: +$450
+    Final Balance: $950 + $450 = $1400
+    
+    [Player is prompted to play another round or return to ArcadeSystem...]
