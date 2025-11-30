@@ -1,10 +1,10 @@
 package Games;
 
-import Games.Wordle_Assets.Process_Wordle;
+import Games.Wordle_Assets.WordleBackEnd;
 
 // Entry point for the Wordle game
-// Extends Process_Wordle to access all the game logic
-public class Wordle extends Process_Wordle 
+// Extends WordleBackEnd to access all the game logic
+public class Wordle extends WordleBackEnd 
 {
     public static void main(String[] args) 
     {
@@ -20,14 +20,14 @@ public class Wordle extends Process_Wordle
             System.out.println("1. Have another player enter the word to guess.");
             System.out.println("2. Generate a random word.");
             
-            // Let player pick the word source
-            String guessWord = Process_Wordle.Process.chooseMode();
+            // Let player game mode
+            String guessWord = WordleBackEnd.Process.chooseMode();
             
             // Run the actual game
-            Process_Wordle.Process.prepareGame(guessWord);
+            WordleBackEnd.Process.prepareGame(guessWord);
 
             // Ask if they want another round
-            restart = Process_Wordle.Verify.restartGame();
+            restart = WordleBackEnd.Verify.restartGame();
             
         }
     }

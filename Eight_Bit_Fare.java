@@ -35,7 +35,8 @@ public class Eight_Bit_Fare
                     break;
 
                 case 2:
-                    System.out.println("\nStarting Monopoly...\n");
+                    System.out.println("\nStarting Monopoly...");
+                    System.out.println("Welcome to Monopoly! A game which simulates capitalism! (Requires atleast 2 players)");
                     Monopoly.main(args);
                     break;
 

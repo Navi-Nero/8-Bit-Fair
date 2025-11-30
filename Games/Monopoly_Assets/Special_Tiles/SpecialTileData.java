@@ -1,23 +1,43 @@
 package Games.Monopoly_Assets.Special_Tiles;
 
-// Represents a single special tile (Go, Jail, Taxes, etc)
-public class SpecialTileData 
-{
+import Games.Monopoly_Assets.Board.BoardTilesData;
 
-    private int tileIndex;
-    private String tileName;
-    private String tileDescription;
+
+// Represents a single special tile (Go, Jail, Taxes, etc)
+public class SpecialTileData implements BoardTilesData 
+{
+    private int tileIndex;        // board position (0–39)
+    private String tileName;      // e.g., "Go", "Jail", "Chance"
+    private String tileDescription; // effect of the tile
 
     // Create a special tile with a name and what it does
-    SpecialTileData(int index, String name, String description)
+    public SpecialTileData(int index, String name, String description)
     {
-
         this.tileIndex = index;
         this.tileName = name;
         this.tileDescription = description;
-        
     }
 
+    // --- BoardData interface methods ---
+     @Override
+    public int getBoardIndex() 
+    {
+        return this.tileIndex;
+    }
+
+    @Override
+    public String getName() 
+    {
+        return this.getTileName();
+    }
+
+    @Override
+    public String getDescription() 
+    {
+        return this.getTileDescription();
+    }
+
+    // --- Extra getters ---
     public String getTileName()
     {
         return tileName;

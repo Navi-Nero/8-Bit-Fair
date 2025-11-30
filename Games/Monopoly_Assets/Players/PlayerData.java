@@ -1,88 +1,174 @@
 package Games.Monopoly_Assets.Players;
 
+import Games.Monopoly_Assets.Properties.PropertyData;
 import java.util.ArrayList;
+import java.util.List;
 
-// Represents a single player in the game
-public class PlayerData {
-    private int playerIndex;
-    private String playerName;
-    private int playerMoney;
-    private ArrayList<String> playerAssets;
-    private boolean isTurn;
-    private boolean bankrupt;
+public class PlayerData 
+{
 
-    // Create a new player with starting money
-    public PlayerData(int index, String name, int money, boolean isTurn, boolean bankrupt) {
+    private int playerIndex;        
+    private String playerName;      
+    private int playerMoney;        
+    private int boardIndex;         
+    private boolean inJail;         
+    private int jailTurns;          
+    private boolean bankrupt;       
+    private List<PropertyData> assets; 
+    private List<String> keepableCards; 
+
+    // Constructor
+    public PlayerData(int index, String name, int startingMoney, boolean inJail, boolean bankrupt) 
+    {
+
         this.playerIndex = index;
         this.playerName = name;
-        this.playerMoney = money;
-        this.playerAssets = new ArrayList<>();
-        this.isTurn = isTurn;
+        this.playerMoney = startingMoney;
+        this.boardIndex = 0; 
+        this.inJail = inJail;
+        this.jailTurns = 0;
         this.bankrupt = bankrupt;
+        this.assets = new ArrayList<>();
+        this.keepableCards = new ArrayList<>();
+
     }
-    
-    // Get this player's number
-    public int getPlayerIndex() {
+
+    // --- Basic getters ---
+    public int getPlayerIndex() 
+    {
         return playerIndex;
     }
 
-    // Get player's name
-    public String getPlayerName() {
+    public String getPlayerName() 
+    {
         return playerName;
     }
 
-    // Check how much money they have
-    public int getPlayerMoney() {
+    public int getPlayerMoney() 
+    {
         return playerMoney;
     }
 
-    // Add cash to player's balance
-    public void addMoney(int amount) {
-        this.playerMoney += amount;
+    public int getBoardIndex() 
+    {
+        return boardIndex;
     }
 
-    // Subtract cash from player
-    public void loseMoney(int amount) {
-        this.playerMoney -= amount;
+    public boolean isInJail() 
+    {
+        return inJail;
     }
 
-    // Add a property to their portfolio
-    public void addAsset(String asset) {
-        playerAssets.add(asset);
-    }
-
-    // Remove a property from their portfolio
-    public void removeAsset(String asset) {
-        playerAssets.remove(asset);
-    }
-
-    // Get all properties owned
-    public ArrayList<String> getPlayerAssets() {
-        return playerAssets;
-    }
-
-    // Start their turn
-    public void startTurn() {
-        isTurn = true;
-    }
-
-    // End their turn
-    public void endTurn() {
-        isTurn = false;
-    }
-
-    // Check if it's their turn
-    public boolean isPlayerTurn() {
-        return isTurn;
-    }
-
-    // Check if player is broke
-    public boolean isBankrupt() {
+    public boolean isBankrupt() 
+    {
         return bankrupt;
     }
 
-    // Mark player as bankrupt
-    public void setBankrupt() {
-        this.bankrupt = true;
+    public List<PropertyData> getPlayerAssets() 
+    {
+        return assets;
+    }
+
+    public List<String> getKeepableCards() 
+    {
+        return keepableCards;
+    }
+
+    // --- Money management ---
+    public void addMoney(int amount) 
+    {
+        playerMoney += amount;
+    }
+
+    public void loseMoney(int amount) 
+    {
+        playerMoney -= amount;
+    }
+
+    public void setBankrupt(boolean bankrupt) 
+    {
+        this.bankrupt = bankrupt;
+    }
+
+    // --- Board movement ---
+    public void setBoardIndex(int index) 
+    {
+        this.boardIndex = index;
+    }
+
+    // --- Jail management ---
+    public void setInJail(boolean inJail) 
+    {
+        this.inJail = inJail;
+        if (!inJail) 
+        {
+            jailTurns = 0; 
+        }
+    }
+
+    public void incrementJailTurns() 
+    {
+        jailTurns++;
+    }
+
+    public int getJailTurns() 
+    {
+        return jailTurns;
+    }
+
+    // --- Property management ---
+    public void addProperty(PropertyData property) 
+    {
+        assets.add(property);
+    }
+
+    public void removeProperty(PropertyData property) 
+    {
+        assets.remove(property);
+    }
+
+    // --- Card management ---
+    public void addKeepableCard(String cardName) 
+    {
+        keepableCards.add(cardName);
+    }
+
+    public boolean useKeepableCard(String cardName) 
+    {
+        if (keepableCards.contains(cardName)) 
+        {
+            keepableCards.remove(cardName);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+public String toString() 
+    {
+
+        StringBuilder propertyNames = new StringBuilder();
+
+        if (assets.isEmpty()) 
+        {
+            propertyNames.append("None");
+        } 
+        else 
+        {
+            for (PropertyData property : assets) 
+            {
+                propertyNames.append(property.getName()).append(", ");
+            }
+            // remove trailing comma and space
+            propertyNames.setLength(propertyNames.length() - 2);
+        }
+
+        return "Player " + playerIndex + ": " + playerName +
+               " | Money: $" + playerMoney +
+               " | Position: " + boardIndex +
+               " | Jail: " + (inJail ? "Yes" : "No") +
+               " | Bankrupt: " + (bankrupt ? "Yes" : "No") +
+               " | Properties: " + propertyNames.toString();
+
     }
 }

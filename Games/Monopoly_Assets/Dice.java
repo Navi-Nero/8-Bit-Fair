@@ -8,11 +8,12 @@ public class Dice
 {
     private static final Input_Handling input = new Input_Handling();
     private int lastRoll;
+    private int die1;
+    private int die2;
 
     // Initialize the dice roller
     public Dice()
     {
-        
         lastRoll = 0;
     }
 
@@ -20,9 +21,11 @@ public class Dice
     public int rollDice()
     {
 
-        int die1 = input.randomize(6) + 1;
-        int die2 = input.randomize(6) + 1;
+        die1 = input.randomize(6) + 1;
+        die2 = input.randomize(6) + 1;
+
         lastRoll = die1 + die2;
+
         return lastRoll;
 
     }
@@ -33,14 +36,19 @@ public class Dice
         return lastRoll;
     }
 
-    // Check if the player rolled doubles (same number on both dice)
-    // This is useful for getting another turn in monopoly
+    // Check if the player rolled doubles 
     public boolean isDoubles()
     {
-
-        int die1 = lastRoll / 2;  // This is a simplified check
-        int die2 = lastRoll - die1;
         return die1 == die2;
+    }
 
+    public int getDie1() 
+    {
+        return die1;
+    }
+
+    public int getDie2() 
+    {
+        return die2;
     }
 }

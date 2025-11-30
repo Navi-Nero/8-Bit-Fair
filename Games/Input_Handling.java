@@ -1,7 +1,8 @@
 package Games;
 import java.util.Scanner;
 
-public class Input_Handling {
+public class Input_Handling 
+{
 
     private final Scanner sc;
 
@@ -45,6 +46,32 @@ public class Input_Handling {
         System.out.print(dialogue);
         return sc.nextLine();
 
+    }
+
+    public boolean getYesNo(String dialogue) 
+    {
+
+        while (true) 
+        {
+
+            System.out.print(dialogue);
+            String response = sc.nextLine().trim().toLowerCase();
+
+            if (response.equals("y") || response.equals("yes")) 
+            {
+                
+                return true;
+
+            } else if (response.equals("n") || response.equals("no")) {
+
+                return false;
+
+            } else {
+
+                System.out.println("Invalid input! Please enter 'y' or 'n'.");
+                
+            }
+        }
     }
 
     public int randomize(int n) 

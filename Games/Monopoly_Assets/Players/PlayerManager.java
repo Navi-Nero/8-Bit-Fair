@@ -62,6 +62,16 @@ public class PlayerManager
 
     }
 
+    public void setToBankrupt(PlayerData player) 
+    {
+
+        player.setBankrupt(true);
+        player.getPlayerAssets().clear(); // release properties
+        System.out.println(player.getPlayerName() + " is now bankrupt! " + getActivePlayerCount() + " player/s remain!");
+
+    }
+
+
     // Get the current player whose turn it is
     public PlayerData getCurrentPlayer() 
     {
@@ -77,41 +87,121 @@ public class PlayerManager
     // Print stats for one player or all
     public void printPlayersStats(int index) 
     {
-        if (index == 0) {
+
+        if (index == 0) 
+        {
+
             System.out.println();
 
             // Print everyone's stats
-            for (PlayerData p : players) {
-                System.out.println("Player " + p.getPlayerIndex() + ": " + p.getPlayerName() +
-                                " | Money: $" + p.getPlayerMoney() +
-                                " | Properties: " + p.getPlayerAssets());
+            for (PlayerData p : players) 
+            {
+
+                System.out.println(p.toString());
+
             }
 
         } else {
+            
             // Find and print specific player
             PlayerData found = getPlayer(index);
             
-            if (found != null) {
+            if (found != null) 
+            {
+
                 System.out.println();
-                System.out.println("Player " + found.getPlayerIndex() + ": " + found.getPlayerName() +
-                                " | Money: $" + found.getPlayerMoney() +
-                                " | Properties: " + found.getPlayerAssets().size());
+                System.out.println(found.toString());
+
             } else {
+
                 System.out.println("No player found with index " + index);
+
             }
         }
     }
 
     // Get how many players are still in the game
-    public int getActivePlayerCount() {
+    public int getActivePlayerCount() 
+    {
+
         int count = 0;
-        for (PlayerData p : players) {
-            if (!p.isBankrupt()) {
+        for (PlayerData p : players) 
+        {
+
+            if (!p.isBankrupt()) 
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    public PlayerData getPlayerByName(String name) 
+    {
+
+        for (PlayerData p : players) 
+        {
+            if (p.getPlayerName().equalsIgnoreCase(name)) 
+            {
+                return p;
+            }
+        }
+
+        return null;
+
+    }
+
+    // Count how many properties of a given type (Railroad, Utility, Color) a player owns
+public int countOwnedInGroup(String ownerName, String groupType) 
+    {
+
+        PlayerData owner = getPlayerByName(ownerName);
+        if (owner == null) 
+        {
+            return 0;
+        }
+
+        int count = 0;
+        for (Games.Monopoly_Assets.Properties.PropertyData property : owner.getPlayerAssets()) 
+        {
+            if (property.getPropertyType().equalsIgnoreCase(groupType)) 
+            {
                 count++;
             }
         }
         return count;
+
     }
+
+// Count how many properties of a given color group a player owns
+public int countOwnedInColor(String ownerName, String color) 
+    {
+
+        PlayerData owner = getPlayerByName(ownerName);
+        if (owner == null) 
+        {
+            return 0;
+        }
+
+        int count = 0;
+        for (Games.Monopoly_Assets.Properties.PropertyData property : owner.getPlayerAssets()) 
+        {
+            if (property.getPropertyType().equalsIgnoreCase(color)) 
+            {
+                count++;
+            }
+        }
+        return count;
+
+    }
+
+// Check if a player owns all properties in a color group (monopoly)
+public boolean ownsFullColorSet(String ownerName, String color, int totalInSet) 
+    {
+        return countOwnedInColor(ownerName, color) == totalInSet;
+    }
+
 
     // Check if game is over (only 1 player left)
     public boolean isGameOver() 
@@ -123,5 +213,20 @@ public class PlayerManager
     public LinkedList<PlayerData> getAllPlayers() 
     {
         return players;
+    }
+
+    public String getWinner()
+    {
+
+        for (PlayerData p : players) 
+        {
+
+            if (!p.isBankrupt())
+            {
+                return p.getPlayerName();
+            }
+            
+        }
+        return null;
     }
 }

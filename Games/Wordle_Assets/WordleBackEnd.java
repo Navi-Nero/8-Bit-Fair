@@ -5,7 +5,7 @@ import Games.Input_Handling;
 
 // Handles all the game logic for Wordle
 // Contains static inner classes for verification, game flow, and word picking
-public class Process_Wordle {
+public class WordleBackEnd {
     private final static Input_Handling input = new Input_Handling();
 
     // Verifies guesses and checks if they're valid words

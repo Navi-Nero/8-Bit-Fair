@@ -1,41 +1,147 @@
 package Games;
 
-import Games.Monopoly_Assets.Board;
+import Games.Monopoly_Assets.MonopolyBackEnd;
+import Games.Monopoly_Assets.Players.PlayerData;
+import Games.Monopoly_Assets.Properties.PropertyData;
 
-// Entry point for the Monopoly game
-// Just kicks off the main board game loop
-public class Monopoly 
+// Main Program for Monopoly
+public class Monopoly extends MonopolyBackEnd
 {
-    // Console color codes for the property colors
-    final static String RED = "\u001B[31m\u25A0\u001B[0m";
-    final static String CYAN = "\u001B[96m\u25A0\u001B[0m";
-    final static String MAGENTA = "\u001B[95m\u25A0\u001B[0m";
-    final static String YELLOW = "\u001B[33m\u25A0\u001B[0m";
-    final static String LIGHT_RED = "\u001B[91m\u25A0\u001B[0m";
-    final static String LIGHT_YELLOW = "\u001B[93m\u25A0\u001B[0m";
-    final static String GREEN = "\u001B[92m\u25A0\u001B[0m";
-    final static String BLUE = "\u001B[94m\u25A0\u001B[0m";
-
-    // Background colors for properties
-    final static String RED_BG = "\u001B[41m\u25A0\u001B[0m";
-    final static String CYAN_BG = "\u001B[106m\u25A0\u001B[0m";
-    final static String MAGENTA_BG = "\u001B[105m\u25A0\u001B[0m";
-    final static String YELLOW_BG = "\u001B[43m\u25A0\u001B[0m";
-    final static String LIGHT_RED_BG = "\u001B[101m\u25A0\u001B[0m";
-    final static String LIGHT_YELLOW_BG = "\u001B[103m\u25A0\u001B[0m";
-    final static String GREEN_BG = "\u001B[102m\u25A0\u001B[0m";
-    final static String BLUE_BG = "\u001B[104m\u25A0\u001B[0m";
 
     // Start the monopoly game
-    public static void main(String[] args) 
+    public static void main(String[] args)
     {
-        // Show the colors available for properties
-        System.out.println("=== MONOPOLY ===");
-        System.out.println("Available property colors:");
-        System.out.println(RED + CYAN + MAGENTA + YELLOW + LIGHT_RED + LIGHT_YELLOW + GREEN + BLUE);
-        System.out.println();
 
-        // Start the actual game
-        Board.main(args);
+        PlayerData current = players.getCurrentPlayer();
+        cards.shuffle();
+
+        while (!players.isGameOver())
+        {
+
+            playerTurn();
+
+            int menuChoice = 0;
+
+            while (menuChoice != 3)
+            {
+
+                menuChoice = input.getInt("\n=== MONOPOLY MENU ===\n" +
+                        "[1] Check Player Stats\n" +
+                        "[2] Upgrade Property\n" +
+                        "[3] Pay Bail ($50)\n" +
+                        "[4] End Turn\n" +
+                        "[5] Exit for everyone\n\n");
+
+                switch (menuChoice)
+                {
+
+                    case 1:
+
+                        checkPlayerStats();
+                        break;
+
+                    case 2:
+
+                        if (current.getPlayerAssets().isEmpty()) 
+                        {
+                            System.out.println(current.getPlayerName() + " owns no properties to upgrade.");
+                            break;
+                        }
+
+                        // List owned properties
+                        System.out.println("Choose a property to upgrade:");
+                        int i = 1;
+                        for (PropertyData prop : current.getPlayerAssets()) 
+                        {
+                            System.out.println("[" + i + "] " + prop.getPropertyName() + " (Houses: " + prop.getHouseCount() + ")");
+                            i++;
+                        }
+
+                        int choice = input.getInt("Enter property number: ");
+                        if (choice < 1 || choice > current.getPlayerAssets().size()) 
+                        {
+                            System.out.println("Invalid choice.");
+                            break;
+                        }
+
+                        PropertyData selected = current.getPlayerAssets().get(choice - 1);
+
+                        // Check if player owns full color set before allowing upgrade
+                        int totalInSet = properties.getProperties().stream()
+                            .filter(p -> p.getPropertyType().equalsIgnoreCase(selected.getPropertyType()))
+                            .toArray().length;
+
+                        if (!players.ownsFullColorSet(current.getPlayerName(), selected.getPropertyType(), totalInSet)) 
+                        {
+                            System.out.println("You must own the full color set to build houses.");
+                            break;
+                        }
+
+                        // Upgrade cost (simplified: $50 per house, can adjust per color)
+                        int upgradeCost = (selected.getHouseCount() < 4) ? 50 : 100;
+
+                        if (selected.hasHotel()) 
+                        {
+                            System.out.println(selected.getPropertyName() + " already has a Hotel. No further upgrades possible.");
+                            break;
+                        }
+
+                        if (bank.playerCanBuyProperty(current, upgradeCost)) 
+                        {
+                            bank.playerBuyProperty(current, upgradeCost);
+                            selected.addHouseOrHotel();
+
+                            if (selected.hasHotel()) 
+                            {
+                                System.out.println(current.getPlayerName() + " built a Hotel on " + selected.getPropertyName() + "!");
+
+                            } else {
+                                
+                                System.out.println(current.getPlayerName() + " built a house on " + selected.getPropertyName() + 
+                                                ". Total houses: " + selected.getHouseCount());
+                            }
+
+                        } else {
+
+                            System.out.println("Not enough money to upgrade.");
+                            
+                        }
+
+                        break;
+
+                    case 3:
+
+                        if (current.isInJail()) 
+                        {
+                            bank.chargePlayer(current, 50);
+                            current.setInJail(false);
+                            System.out.println(current.getPlayerName() + " paid $50 bail and is released from Jail.");
+
+                        } else {
+
+                            System.out.println(current.getPlayerName() + " is not in Jail.");
+                        }
+
+                        break;
+
+                    case 4:
+
+                        players.nextTurn();
+                        break;
+
+                    case 5:
+
+                        System.out.println("Thanks for playing Monopoly! Bye!");
+                        return;
+
+                    default:
+
+                        System.out.println("Invalid choice. Try again.");
+                }
+            }
+        }
+
+        System.out.print("Game Over! The winner was " + players.getWinner() + "!");
+        
     }
 }

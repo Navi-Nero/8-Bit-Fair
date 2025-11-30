@@ -34,13 +34,15 @@ public class SpecialTileManager
         return specialTiles;
     }
 
-    // Get a specific special tile by name
-    public SpecialTileData getTileByName(String name)
+    // Get a specific special tile by index
+    public SpecialTileData getTileByIndex(int boardIndex) 
     {
-        for (SpecialTileData tile : specialTiles)
+        for (SpecialTileData tile : specialTiles) 
         {
-            if (tile.getTileName().equals(name))
+            if (tile.getBoardIndex() == boardIndex) 
+            {
                 return tile;
+            }
         }
         return null;
     }
