@@ -139,9 +139,8 @@ Player Turn:
 
 Starting Mode: Choose between another player entering the word or generating a random word
 Logic: `Wordle` class extends `Process_Wordle` for core game logic
-Continuous Play: `Verify.restartGame()` prompts player for another round
+Continuous Play: `Verify.restartGame()` prompts player for another round.
 
-Markdown
 
 ## 🃏 Poker Game Guide (`Poker.java`)
 
