@@ -123,7 +123,7 @@ Game Flow: `ArcadeSystem` manages the overall loop; individual game classes cont
 #### 🃏 Poker Game
 
 Flow: `MyPokerGame.play()` handles dealing, betting, and hand resolution
-Configuration: Starts with default settings but accepts custom configuration
+Configuration: Starts with default settings but accepts custom configuration.
 
 #### 🏠 Monopoly Game
 
@@ -133,7 +133,7 @@ Player Turn:
 ( 1 ) Roll Dice - `Dice.rollDice()` is called, player moves
 ( 2 ) Check for Doubles - Three consecutive doubles sends player to jail
 ( 3 ) Bank Transaction - `Bank.java` handles all purchases, rent, and taxes
-( 4 ) Monopoly Menu - Allows player to Check Stats, Upgrade Property, or End Turn
+( 4 ) Monopoly Menu - Allows player to Check Stats, Upgrade Property, or End Turn.
 
 #### 🟩 Wordle Game
 
