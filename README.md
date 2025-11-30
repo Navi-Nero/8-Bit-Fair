@@ -179,7 +179,7 @@ Continuous Play: `Verify.restartGame()` prompts player for another round
 
 ### 📊 Example Poker Scenario (MyPokerGame)
 
-Player 'Andrei' enters Poker Game with a starting balance of $1000
+Player 'Isaac' enters Poker Game with a starting balance of $1000
 
 Round 1: Initial Bet
     MyPokerGame.play() method initializes hand
@@ -188,12 +188,12 @@ Round 1: Initial Bet
     User Input: 50
     
     Betting Logic:
-        Andrei's Money: $1000 -> $950
+        Isaac's Money: $1000 -> $950
     
     MyPokerGame: Player receives initial 5-card hand: [Ace of Spades, Ace of Hearts, 8 of Diamonds, 3 of Clubs, King of Spades]
 
 Round 2: Discard and Draw
-    Andrei's Hand Status: Pair of Aces
+    Isaac's Hand Status: Pair of Aces
     
     Prompt: Which cards to discard? (e.g., 3, 4, 5 for 8, 3, K)
     User Input: 3, 4, 5
@@ -201,12 +201,12 @@ Round 2: Discard and Draw
     MyPokerGame: Discards (8D, 3C, KS) and draws three new cards: [Ace of Clubs, 7 of Hearts, 7 of Diamonds]
 
 Round 3: Final Hand and Payout
-    Andrei's Final Hand: [Ace of Spades, Ace of Hearts, Ace of Clubs, 7 of Hearts, 7 of Diamonds]
+    Isaac's Final Hand: [Ace of Spades, Ace of Hearts, Ace of Clubs, 7 of Hearts, 7 of Diamonds]
     Hand Rank: **Full House** (Aces full of Sevens)
     
     MyPokerGame: Payout calculated based on Full House odds (e.g., 9:1)
     
-    Andrei's Winnings: +$450
+    Isaac's Winnings: +$450
     Final Balance: $950 + $450 = $1400
     
     [Player is prompted to play another round or return to ArcadeSystem...]
