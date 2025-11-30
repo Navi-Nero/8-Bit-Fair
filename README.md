@@ -141,47 +141,6 @@ Starting Mode: Choose between another player entering the word or generating a r
 Logic: `Wordle` class extends `Process_Wordle` for core game logic
 Continuous Play: `Verify.restartGame()` prompts player for another round
 
-### 📊 Example Monopoly Scenario
-
-Warrior enters Lucena Town
-    └─ Encounters: Port Rat, Lucena Pirate (miniboss)
-
-## 🎮 Gameplay Guide
-
-### Starting the Arcade
-
-Run `java -cp out Games.ArcadeSystem`
-View the central menu with choices for three games
-Choose: (1) Poker, (2) Monopoly, (3) Wordle, (4) Exit
-
-### Core Utilities and Input
-
-Centralized Input: `Input_Handling.java` ensures all inputs are validated
-Game Flow: `ArcadeSystem` manages the overall loop; individual game classes control their flow
-
-### Game Instructions
-
-#### 🃏 Poker Game
-
-Flow: `MyPokerGame.play()` handles dealing, betting, and hand resolution
-Configuration: Starts with default settings but accepts custom configuration
-
-#### 🏠 Monopoly Game
-
-Setup: Requires at least two players
-Display: Property colors are shown using **ANSI color codes**
-Player Turn:
-( 1 ) Roll Dice - `Dice.rollDice()` is called, player moves
-( 2 ) Check for Doubles - Three consecutive doubles sends player to jail
-( 3 ) Bank Transaction - `Bank.java` handles all purchases, rent, and taxes
-( 4 ) Monopoly Menu - Allows player to Check Stats, Upgrade Property, or End Turn
-
-#### 🟩 Wordle Game
-
-Starting Mode: Choose between another player entering the word or generating a random word
-Logic: `Wordle` class extends `Process_Wordle` for core game logic
-Continuous Play: `Verify.restartGame()` prompts player for another round
-
 Markdown
 
 ## 🃏 Poker Game Guide (`Poker.java`)
