@@ -6,6 +6,7 @@ import Games.Monopoly_Assets.Players.*;
 import Games.Monopoly_Assets.Properties.*;
 import Games.Monopoly_Assets.Special_Tiles.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 // Main game board and controller for monopoly
 // Manages the game flow, player turns, and interactions with the board
@@ -18,11 +19,10 @@ public class Board
     private static final Dice dice = new Dice();
     private static final PropertyManager properties = new PropertyManager();
     private static final SpecialTileManager specialTiles = new SpecialTileManager();
-    private ArrayList<String> board;
+    private static int currentTile = 0;
 
     public static void createBoard()
     {
-
 
     }
 
@@ -59,6 +59,19 @@ public class Board
         players.printPlayersStats(targetIndex);
     }
 
+    // Find which tile the player landed on after rolling
+    public static void currentTile(int roll)
+    {
+       currentTile += roll;
+
+       if (currentTile >= 40)
+       {
+        currentTile -= 40;
+       }
+
+
+    }
+
     // Handle a player's turn: roll dice and move
     public static void playerTurn()
     {
@@ -79,32 +92,22 @@ public class Board
             // if player rolls doubles 3x, they get sent to jail
             if (doublesCount == 3)
             {
-                System.out.println(currentPlayer.getPlayerName() + " rolled a doubles three times in a row! They get sent to jail." );
 
+                System.out.println(currentPlayer.getPlayerName() + " rolled a doubles three times in a row! They get sent to jail." );
                 return;
+
             }
 
         }
 
         System.out.println(currentPlayer.getPlayerName() + " rolled: " + rollAmount);
 
+        currentTile(rollAmount);
+
         // TODO: Move player on board, handle special tiles, etc.
         // For now just show what they rolled
     }
 
-    public static void nextPlayerTurn()
-    {
-
-    }
-
-    public static void moveTiles()
-    {
-
-
-
-    }
-
-    
     // Main game loop
     public static void main(String[] args)
     {
@@ -128,6 +131,7 @@ public class Board
 
                 switch (menuChoice)
                 {
+
                     case 1:
 
                         checkPlayerStats();
@@ -149,6 +153,7 @@ public class Board
                     default:
 
                         System.out.println("Invalid choice. Try again.");
+
                 }
             }
 
