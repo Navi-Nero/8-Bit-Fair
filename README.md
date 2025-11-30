@@ -102,6 +102,8 @@ This is achieved through a modular and scalable design, where each game is devel
 
  ## 📁 Program Structure
 
+## 📁 Program Structure
+
 Eight_Bit_Fare/
 ├── Main.java # Application entry point, launches arcade menu
 ├── Games/
@@ -133,4 +135,3 @@ Eight_Bit_Fare/
 │ └── CenterHub.java # Text centering & right alignment
 └── clearScreen/
 └── ClearScreen.java # Cross-platform terminal clearing
-
