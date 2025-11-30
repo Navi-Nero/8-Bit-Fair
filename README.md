@@ -179,7 +179,7 @@ Player chooses to retry or return to Arcade.
 ---
 
 ## 📜 Sample Output
-
+---
 ====================================
         WELCOME TO 8-BIT FARE
 ====================================
@@ -189,7 +189,8 @@ Choose a game to play:
 3. Wordle
 4. Exit
 Enter your choice: 2
-
+---
+---
 ------------------------------------
         MONOPOLY BOARD
 ------------------------------------
@@ -203,7 +204,8 @@ This property is unowned. Do you want to buy it? (Y/N): Y
 You bought Boardwalk for $400. Balance: $1100
 
 End of turn. Press Enter to continue...
-
+---
+---
 ====================================
             POKER TABLE
 ====================================
@@ -222,7 +224,8 @@ Enter raise amount: 50
 You raised by $50. New pot: $100
 
 Returning to Arcade Menu...
-
+---
+---
 ====================================
              WORDLE
 ====================================
@@ -238,7 +241,7 @@ Congratulations! You guessed the word 'PLATE' in 4 attempts!
 Play again? (Y/N): N
 
 Returning to Arcade Menu...
-
+---
 
 ## 👤 Author & Acknowledgement
 
