@@ -178,6 +178,149 @@ Player chooses to retry or return to Arcade.
 
 ---
 
+## 📜 Sample Output
+
+Here’s a simplified version of **8-Bit Fare** showing the arcade menu and sample gameplay for Poker, Monopoly, and Wordle:
+
+import java.util.*;
+
+public class EightBitFare {
+    static Scanner sc = new Scanner(System.in);
+    static Random rand = new Random();
+
+    public static void main(String[] args) {
+        while (true) {
+            System.out.println("====================================");
+            System.out.println("        WELCOME TO 8-BIT FARE");
+            System.out.println("====================================");
+            System.out.println("Choose a game to play:");
+            System.out.println("1. Poker");
+            System.out.println("2. Monopoly");
+            System.out.println("3. Wordle");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = sc.nextInt();
+            sc.nextLine(); // consume newline
+
+            switch (choice) {
+                case 1:
+                    playPoker();
+                    break;
+                case 2:
+                    playMonopoly();
+                    break;
+                case 3:
+                    playWordle();
+                    break;
+                case 4:
+                    System.out.println("Thanks for playing! Goodbye!");
+                    return;
+                default:
+                    System.out.println("Invalid choice! Try again.");
+            }
+        }
+    }
+
+    // ---------------- POKER ----------------
+    static void playPoker() {
+        System.out.println("\n====================================");
+        System.out.println("            POKER TABLE");
+        System.out.println("====================================");
+        int balance = 500;
+        int pot = 50;
+        System.out.println("Player Balance: $" + balance);
+        System.out.println("Pot: $" + pot);
+        String[] cards = {"A♠", "10♦"};
+        System.out.println("Your cards: " + Arrays.toString(cards));
+        System.out.println("Dealer shows: [K♣, ?]");
+        System.out.println("\nChoose an action:");
+        System.out.println("1. Call");
+        System.out.println("2. Raise");
+        System.out.println("3. Fold");
+        System.out.print("Enter your choice: ");
+        int action = sc.nextInt();
+        sc.nextLine();
+        if(action == 2){
+            System.out.print("Enter raise amount: ");
+            int raise = sc.nextInt();
+            sc.nextLine();
+            pot += raise;
+            balance -= raise;
+            System.out.println("You raised by $" + raise + ". New pot: $" + pot);
+        } else if(action == 1){
+            System.out.println("You called. Pot: $" + pot);
+        } else {
+            System.out.println("You folded. Pot: $" + pot);
+        }
+        System.out.println("Returning to Arcade Menu...\n");
+    }
+
+    // ---------------- MONOPOLY ----------------
+    static void playMonopoly() {
+        System.out.println("\n------------------------------------");
+        System.out.println("        MONOPOLY BOARD");
+        System.out.println("------------------------------------");
+        int player1 = 1500, player2 = 1500;
+        System.out.println("Player 1: $" + player1);
+        System.out.println("Player 2: $" + player2);
+        System.out.println("\nPlayer 1's turn!");
+        int dice = rand.nextInt(6)+1 + rand.nextInt(6)+1;
+        System.out.println("Rolling dice... You rolled " + dice);
+        System.out.println("Moved to Boardwalk");
+        System.out.print("This property is unowned. Do you want to buy it? (Y/N): ");
+        String buy = sc.nextLine().toUpperCase();
+        if(buy.equals("Y")){
+            player1 -= 400;
+            System.out.println("You bought Boardwalk for $400. Balance: $" + player1);
+        } else {
+            System.out.println("You did not buy the property.");
+        }
+        System.out.println("End of turn. Press Enter to continue...");
+        sc.nextLine();
+    }
+
+    // ---------------- WORDLE ----------------
+    static void playWordle() {
+        System.out.println("\n====================================");
+        System.out.println("             WORDLE");
+        System.out.println("====================================");
+        String[] wordList = {"PLATE", "CRANE", "SLATE", "GLOVE", "BRICK"};
+        String secret = wordList[rand.nextInt(wordList.length)];
+        int attempts = 6;
+        for(int i=1;i<=attempts;i++){
+            System.out.print("Attempt " + i + ": ");
+            String guess = sc.nextLine().toUpperCase();
+            if(guess.equals(secret)){
+                System.out.println("Congratulations! You guessed the word '" + secret + "' in " + i + " attempts!");
+                break;
+            } else {
+                // simple feedback
+                StringBuilder fb = new StringBuilder();
+                for(int j=0;j<5;j++){
+                    if(j<guess.length()){
+                        if(guess.charAt(j) == secret.charAt(j)){
+                            fb.append(guess.charAt(j) + "(G) "); // Green
+                        } else if(secret.contains("" + guess.charAt(j))){
+                            fb.append(guess.charAt(j) + "(Y) "); // Yellow
+                        } else {
+                            fb.append(guess.charAt(j) + "(X) "); // Gray
+                        }
+                    }
+                }
+                System.out.println(fb.toString());
+            }
+            if(i==attempts){
+                System.out.println("Out of attempts! The word was: " + secret);
+            }
+        }
+        System.out.print("Play again? (Y/N): ");
+        String again = sc.nextLine().toUpperCase();
+        if(again.equals("Y")) playWordle();
+        else System.out.println("Returning to Arcade Menu...\n");
+    }
+
+
+
 ## 👤 Author & Acknowledgement
 
 ### **Development Team**
