@@ -3,102 +3,158 @@ package Games.Monopoly_Assets;
 import Games.Input_Handling;
 import Games.Monopoly_Assets.Cards.*;
 import Games.Monopoly_Assets.Players.*;
+import Games.Monopoly_Assets.Properties.*;
+import Games.Monopoly_Assets.Special_Tiles.*;
+import java.util.ArrayList;
 
-
-public class Board 
+// Main game board and controller for monopoly
+// Manages the game flow, player turns, and interactions with the board
+public class Board
 {
+    private static final Input_Handling input = new Input_Handling();
+    private static final PlayerManager players = new PlayerManager();
+    private static final CardDeck cards = new CardDeck();
+    private static final Bank bank = new Bank();
+    private static final Dice dice = new Dice();
+    private static final PropertyManager properties = new PropertyManager();
+    private static final SpecialTileManager specialTiles = new SpecialTileManager();
+    private ArrayList<String> board;
 
-    private final static Input_Handling input = new Input_Handling();
-    private final static Players players = new Players();
-    private final static Cards cards = new Cards();
-
-    public static void draw_Chance_Card()
+    public static void createBoard()
     {
 
-        // Draws a Chance card
-        Cards_Constructor chance_Card = cards.draw_Chance_Card();
-        System.out.println("Chance Card: " + chance_Card.getDescription());
-
-        // If it's keepable
-        if (chance_Card.isKeepable()) 
-        {
-
-            System.out.println("Player keeps this card until used.");
-
-            // Later, when used:
-            cards.return_Chance_Card(chance_Card);
-            System.out.println("Card returned to bottom of deck.");
-
-        }
 
     }
 
-    public static void draw_Community_Chest_Card()
+    // Player draws a chance card
+    public static void drawChanceCard()
     {
+        CardData chanceCard = cards.drawChanceCard();
+        System.out.println("Chance Card: " + chanceCard.getDescription());
 
-        // Draws a Community Chest card
-        Cards_Constructor chest_Card = cards.draw_Community_Chest_Card();
-        System.out.println("Community Chest Card: " + chest_Card.getDescription());
-
-        // If it's keepable
-        if (chest_Card.isKeepable()) 
+        // If it's a keepable card, player keeps it
+        if (chanceCard.isKeepable())
         {
-
             System.out.println("Player keeps this card until used.");
-
-            // Later, when used:
-            cards.return_Community_Chest_Card(chest_Card);
-            System.out.println("Card returned to bottom of deck.");
-
         }
-
     }
-    
-    public static void main(String[] args) 
+
+    // Player draws a community chest card
+    public static void drawCommunityChestCard()
     {
+        CardData chestCard = cards.drawCommunityChestCard();
+        System.out.println("Community Chest Card: " + chestCard.getDescription());
+
+        // If it's a keepable card, player keeps it
+        if (chestCard.isKeepable())
+        {
+            System.out.println("Player keeps this card until used.");
+        }
+    }
+
+    // Check the status of all players
+    public static void checkPlayerStats()
+    {
+        int targetIndex = input.getInt("\nEnter the player number to check (0 to see all):\n");
+        players.printPlayersStats(targetIndex);
+    }
+
+    // Handle a player's turn: roll dice and move
+    public static void playerTurn()
+    {
+        PlayerData currentPlayer = players.getCurrentPlayer();
+        System.out.println("\n" + currentPlayer.getPlayerName() + "'s turn!");
+        int doublesCount = 0;
+
+        // Roll the dice
+        int rollAmount = dice.rollDice();
         
+        //Check if the player rolled doubles 
+        if (dice.isDoubles())
+        {
+
+            System.out.println(currentPlayer.getPlayerName() + " rolled a doubles! Rolling again." );
+            doublesCount++;
+
+            // if player rolls doubles 3x, they get sent to jail
+            if (doublesCount == 3)
+            {
+                System.out.println(currentPlayer.getPlayerName() + " rolled a doubles three times in a row! They get sent to jail." );
+
+                return;
+            }
+
+        }
+
+        System.out.println(currentPlayer.getPlayerName() + " rolled: " + rollAmount);
+
+        // TODO: Move player on board, handle special tiles, etc.
+        // For now just show what they rolled
+    }
+
+    public static void nextPlayerTurn()
+    {
+
+    }
+
+    public static void moveTiles()
+    {
+
+
+
+    }
+
+    
+    // Main game loop
+    public static void main(String[] args)
+    {
         cards.shuffle();
+        System.out.println("Welcome to Monopoly!");
 
         System.out.print("Welcome to Monopoly! A game which simulates capitalism! (Requires atleast 2 players)");
 
         int player_Choice = 0;
 
-        while (player_Choice != 4) 
-        { 
+            playerTurn();
 
-            player_Choice = input.getInt("\nWhat would you like to do? \n[1] Check Player Stats \n[2] Upgrade Property \n[3] Draw Card \n[4]Exit \n\n");
+            int menuChoice = 0;
 
-            switch (player_Choice) 
+            while (menuChoice != 3)
             {
+                menuChoice = input.getInt("\n=== MONOPOLY MENU ===\n" +
+                        "[1] Check Player Stats\n" +
+                        "[2] Upgrade Property\n" +
+                        "[3] End Turn\n" +
+                        "[4] Exit for everyone\n\n");
 
-            case 1:
+                switch (menuChoice)
+                {
+                    case 1:
 
-                int target_Print_Index = input.getInt("\nEnter the number of the Player you want to check (Type 0 to see all).\n");
-                players.print_Players_Stats(target_Print_Index);
-                
-                break;
+                        checkPlayerStats();
+                        break;
 
-                case 2:
+                    case 2:
 
-                break;
+                        break;
 
-                case 3:
+                    case 3:
 
-                    draw_Chance_Card();
+                        break;
 
-                break;
+                    case 4:
 
-                case 4:
+                        System.out.println("Thanks for playing Monopoly! Bye!");
+                        break;
 
-                    System.out.print("Until next time! Bye!");
-                    
-                break;
+                    default:
 
-                default:
-
-                throw new AssertionError();
-
+                        System.out.println("Invalid choice. Try again.");
+                }
             }
+
+            players.nextTurn();
+
         }
     }
 }
