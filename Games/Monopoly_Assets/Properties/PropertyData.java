@@ -26,6 +26,11 @@ public class PropertyData
         
     }
 
+    public int getPropertyIndex()
+    {
+        return propertyIndex;
+    }
+
     public String getPropertyName()
     {
         return propertyName;

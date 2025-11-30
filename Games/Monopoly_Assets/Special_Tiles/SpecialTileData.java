@@ -18,6 +18,11 @@ public class SpecialTileData
         
     }
 
+    public int getTileIndex()
+    {
+        return tileIndex;
+    }
+
     public String getTileName()
     {
         return tileName;

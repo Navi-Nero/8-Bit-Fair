@@ -71,10 +71,18 @@ public class PropertyManager
     }
 
     // Get a specific property by its index on the board
-    public PropertyData getPropertyByIndex(int index)
+    public PropertyData getPropertyByBoardIndex(int index) 
     {
-        if (index < 0 || index >= properties.size())
-            return null;
-        return properties.get(index);
+
+        for (PropertyData property : properties) 
+        {
+            
+            if (property.getPropertyIndex() == index) 
+            {
+                return property;
+            }
+
+        }
+        return null;
     }
 }
