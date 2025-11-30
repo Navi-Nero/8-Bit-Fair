@@ -34,15 +34,20 @@
 
 ## 📖 Overview
 
-This Java-based console application serves as a central arcade hub featuring three complete, fully-functional games: **Poker**, **Monopoly**, and **Wordle**.
+## 📌 Overview
 
-The project's primary objective is to demonstrate robust **Object-Oriented Programming (OOP)** principles, including:
-* **Encapsulation**
-* **Abstraction**
-* **Inheritance**
-* **Polymorphism**
+**8-Bit Fare** is a console-based mini-arcade system that brings together three classic-inspired games—**Poker**, **Monopoly**, and **Wordle**—into one unified program.  
+Designed with a strong emphasis on Object-Oriented Programming (OOP), the system showcases how multiple independent games can coexist, interact, and operate smoothly within a single application structure.
 
-This is achieved through a modular and scalable design, where each game is developed in separate classes and packages.
+The program features a centralized main menu where players can easily switch between games without restarting the system.  
+Each game is built in its own package, following proper OOP design principles such as encapsulation, abstraction, inheritance, and polymorphism.  
+This allows each game to maintain its own logic and assets while still connecting seamlessly to the overall arcade system.
+
+To ensure consistent behavior and user experience across all games, **8-Bit Fare** includes shared utility classes for input handling, animations, text styling, and screen management.  
+This not only simplifies development but also keeps the entire project clean, modular, and easy to maintain.
+
+Overall, **8-Bit Fare** highlights teamwork, clean code architecture, and the power of OOP in building a multi-game environment.  
+It serves as a practical demonstration of how structured programming and creative design can merge to create an engaging, retro-style console gaming experience.
 
 🎯 **Key Features**
 
