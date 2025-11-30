@@ -43,3 +43,31 @@ The project's primary objective is to demonstrate robust **Object-Oriented Progr
 * **Polymorphism**
 
 This is achieved through a modular and scalable design, where each game is developed in separate classes and packages.
+
+🎯 **Key Features**
+
+**Games Included**  
+
+| Game      | Description                 | Key Mechanics                               | Notes                                      |
+|-----------|----------------------------|--------------------------------------------|-------------------------------------------|
+| Poker     | Console-based card game    | Card dealing, player hands, gameplay loop  | Configurable settings, default or custom arguments |
+| Monopoly  | Board game simulation      | Color-coded properties, board navigation  | Organized via `Board` class, ANSI color codes for visuals |
+| Wordle    | Word guessing game         | Player-entered or random words, validation, restart option | Inherits logic from `Process_Wordle` |
+
+**OOP-Based Design**  
+
+| Principle      | Implementation                                               |
+|----------------|-------------------------------------------------------------|
+| Encapsulation  | Each game manages its own input and logic internally        |
+| Abstraction    | Complex operations (cards, board, word logic) hidden behind method calls |
+| Inheritance    | Wordle extends `Process_Wordle` to reuse shared logic      |
+| Polymorphism   | Input handling and game methods adapt based on user choices|
+
+**Input & Menu System**  
+- Centralized `Input_Handling` class validates user inputs  
+- Main menu allows switching between games without restarting  
+- Clear prompts for easy navigation  
+
+**Exit System**  
+- User-friendly exit option from the main menu  
+- Graceful shutdown of input handler
