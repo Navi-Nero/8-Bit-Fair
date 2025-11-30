@@ -177,38 +177,75 @@ Starting Mode: Choose between another player entering the word or generating a r
 Logic: `Wordle` class extends `Process_Wordle` for core game logic
 Continuous Play: `Verify.restartGame()` prompts player for another round
 
+Markdown
+
+## 🃏 Poker Game Guide (`Poker.java`)
+
+The Poker game in the 8-Bit-Fair system is managed primarily by the **`MyPokerGame`** class, handling the core logic for card dealing, betting, and hand evaluation.
+
+### 1. Game Setup and Start
+
+* **Entry Point:** The game is launched via the static `main(String args[])` method in the **`Poker.java`** class.
+* **Initialization:** The program creates an instance of **`MyPokerGame`**. This class handles the creation of the card deck and initialization of player balances.
+* **Configuration:** The game can accept command-line arguments to set specific parameters (e.g., number of players) when starting `MyPokerGame`.
+
+### 2. Game Flow (`MyPokerGame.play()`)
+
+The entire game loop is driven by the central `play()` method, which executes the standard sequence of a poker hand:
+
+1.  **Ante/Betting:** Players place their initial bets into the pot.
+2.  **Dealing:** Initial cards are dealt to all players (handled by **`Poker_Assets/Card.java`** and **`Poker_Assets/Hand.java`**).
+3.  **Player Action:** Players choose to Call, Raise, or Fold.
+4.  **Discard/Draw:** (If applicable to the poker variant) Players choose which cards to discard and draw new cards to improve their hand.
+5.  **Final Bet:** A final round of betting occurs.
+6.  **Showdown:** Remaining players reveal their hands.
+
+### 3. Hand Evaluation
+
+* The **`Hand.java`** class contains the core logic for determining the rank of a player's five-card hand (Pair, Two Pair, Flush, Full House, etc.). 
+
+[Image of poker hand rankings]
+
+* The system compares the final hands of all players to determine the winner and award the pot.
+
+### 4. Player Management
+
+* The system tracks player balances and manages the pot (central pool of bets).
+* **Winnings:** The winning player receives the full pot, and their balance is updated accordingly.
+* **Restart:** After a hand is completed, the game prompts the player to play another round or exit back to the **`ArcadeSystem`** menu.
+
 ### 📊 Example Poker Scenario (MyPokerGame)
 
-Player 'Isaac' enters Poker Game with a starting balance of $1000
+Player 'Andrei' enters Poker Game with a starting balance of $1000
 
 Round 1: Initial Bet
-    MyPokerGame.play() method initializes hand
-    
+    `MyPokerGame.play()` method initializes hand
+
     Prompt: Enter your ante bet (Minimum $20)
     User Input: 50
-    
+
     Betting Logic:
-        Isaac's Money: $1000 -> $950
-    
+        Andrei's Money: $1000 -> $950
+
     MyPokerGame: Player receives initial 5-card hand: [Ace of Spades, Ace of Hearts, 8 of Diamonds, 3 of Clubs, King of Spades]
 
 Round 2: Discard and Draw
-    Isaac's Hand Status: Pair of Aces
-    
+    Andrei's Hand Status: Pair of Aces
+
     Prompt: Which cards to discard? (e.g., 3, 4, 5 for 8, 3, K)
     User Input: 3, 4, 5
-    
+
     MyPokerGame: Discards (8D, 3C, KS) and draws three new cards: [Ace of Clubs, 7 of Hearts, 7 of Diamonds]
 
 Round 3: Final Hand and Payout
-    Isaac's Final Hand: [Ace of Spades, Ace of Hearts, Ace of Clubs, 7 of Hearts, 7 of Diamonds]
+    Andrei's Final Hand: [Ace of Spades, Ace of Hearts, Ace of Clubs, 7 of Hearts, 7 of Diamonds]
     Hand Rank: **Full House** (Aces full of Sevens)
-    
+
     MyPokerGame: Payout calculated based on Full House odds (e.g., 9:1)
-    
-    Isaac's Winnings: +$450
+
+    Andrei's Winnings: +$450
     Final Balance: $950 + $450 = $1400
-    
+
     [Player is prompted to play another round or return to ArcadeSystem...]
 
 ## 🏠 Monopoly Game Guide (`Monopoly.java`)
