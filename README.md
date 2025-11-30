@@ -1,7 +1,7 @@
 <div align="center">
   <h1><b>8-Bit Fare</b></h1>
 
-  <p>A Multi-Game Java Console Arcade Showcasing OOP Principles</p>
+  <p><b>Multi-Game</b> Java Console Arcade Showcasing OOP Principles</p>
 
   <b>IT-2108:</b><br>
   Quinto, Isaac<br>
