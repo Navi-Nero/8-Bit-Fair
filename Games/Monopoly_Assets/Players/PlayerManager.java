@@ -4,16 +4,22 @@ import Games.Input_Handling;
 import java.util.LinkedList;
 
 // Manages all players in the game
-public class PlayerManager {
+public class PlayerManager 
+{
+
     private final static Input_Handling input = new Input_Handling();
     private LinkedList<PlayerData> players;
     private int currentPlayerIndex;
 
-    public PlayerManager() {
+    public PlayerManager() 
+
+    {
+
         players = new LinkedList<>();
         int numberOfPlayers = getNumberOfPlayers();
 
-        for (int i = 0; i < numberOfPlayers; i++) {
+        for (int i = 0; i < numberOfPlayers; i++) 
+        {
             players.add(new PlayerData(i + 1, inputPlayerName(i + 1), 1500, false, false));
         }
         
@@ -21,39 +27,56 @@ public class PlayerManager {
     }
 
     // Ask how many people are playing
-    private int getNumberOfPlayers() {
+    private int getNumberOfPlayers() 
+    {
+
         int numberOfPlayers = input.getInt("How many players are there? ");
         return numberOfPlayers;
+
     }
 
     // Get player name from user input
-    private String inputPlayerName(int index) {
+    private String inputPlayerName(int index) 
+    {
+
         String playerName = input.getStr("Enter the name for player [" + (index) + "]: ");
         return playerName;
+
     }
 
     // Get a specific player by index
-    public PlayerData getPlayer(int index) {
-        for (PlayerData p : players) {
-            if (p.getPlayerIndex() == index) {
+    public PlayerData getPlayer(int index) 
+    {
+
+        for (PlayerData p : players) 
+        {
+
+            if (p.getPlayerIndex() == index) 
+            {
                 return p;
             }
+
         }
+
         return null;
+
     }
 
     // Get the current player whose turn it is
-    public PlayerData getCurrentPlayer() {
+    public PlayerData getCurrentPlayer() 
+    {
         return players.get(currentPlayerIndex);
     }
 
     // Move to next player's turn
-    public void nextTurn() {
+    public void nextTurn() 
+    {
         currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
     }
 
     // Print stats for one player or all
-    public void printPlayersStats(int index) {
+    public void printPlayersStats(int index) 
+    {
         if (index == 0) {
             System.out.println();
 
@@ -61,7 +84,7 @@ public class PlayerManager {
             for (PlayerData p : players) {
                 System.out.println("Player " + p.getPlayerIndex() + ": " + p.getPlayerName() +
                                 " | Money: $" + p.getPlayerMoney() +
-                                " | Properties: " + p.getPlayerAssets().size());
+                                " | Properties: " + p.getPlayerAssets());
             }
 
         } else {
@@ -91,12 +114,14 @@ public class PlayerManager {
     }
 
     // Check if game is over (only 1 player left)
-    public boolean isGameOver() {
+    public boolean isGameOver() 
+    {
         return getActivePlayerCount() <= 1;
     }
 
     // Get list of all players
-    public LinkedList<PlayerData> getAllPlayers() {
+    public LinkedList<PlayerData> getAllPlayers() 
+    {
         return players;
     }
 }

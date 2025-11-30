@@ -16,12 +16,14 @@ public class PropertyData
     // Create a property with all its details
     PropertyData(int index, String name, String type, int price, int[] rent, String owner)
     {
+
         this.propertyIndex = index;
         this.propertyName = name;
         this.propertyType = type;
         this.propertyPrice = price;
         this.propertyRent = rent;
         this.propertyOwner = owner;
+        
     }
 
     public String getPropertyName()

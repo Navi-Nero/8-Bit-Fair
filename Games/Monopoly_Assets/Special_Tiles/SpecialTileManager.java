@@ -14,14 +14,18 @@ public class SpecialTileManager
     {
         specialTiles = new ArrayList<>();
 
-        specialTiles.add(new SpecialTileData("Go", "Collect $200 when you pass or land here."));
-        specialTiles.add(new SpecialTileData("Go to Jail", "Move directly to Jail. Do not pass Go, do not collect $200."));
-        specialTiles.add(new SpecialTileData("Jail", "Stay here until player rolls doubles on dice or pays $50"));
-        specialTiles.add(new SpecialTileData("Chance", "Draw a Chance card."));
-        specialTiles.add(new SpecialTileData("Community Chest", "Draw a Community Chest card."));
-        specialTiles.add(new SpecialTileData("Income Tax", "Pay $200 or 10% of your total worth."));
-        specialTiles.add(new SpecialTileData("Luxury Tax", "Pay $100."));
-        specialTiles.add(new SpecialTileData("Free Parking", "No effect."));
+        specialTiles.add(new SpecialTileData(0, "Go", "Collect $200 when you pass or land here."));
+        specialTiles.add(new SpecialTileData(30,"Go to Jail", "Move directly to Jail. Do not pass Go, do not collect $200."));
+        specialTiles.add(new SpecialTileData(10,"Jail", "Stay here until player rolls doubles on dice or pays $50"));
+        specialTiles.add(new SpecialTileData(7,"Chance", "Draw a Chance card."));
+        specialTiles.add(new SpecialTileData(2,"Community Chest", "Draw a Community Chest card."));
+        specialTiles.add(new SpecialTileData(22,"Chance", "Draw a Chance card."));
+        specialTiles.add(new SpecialTileData(17,"Community Chest", "Draw a Community Chest card."));
+        specialTiles.add(new SpecialTileData(36,"Chance", "Draw a Chance card."));
+        specialTiles.add(new SpecialTileData(33,"Community Chest", "Draw a Community Chest card."));
+        specialTiles.add(new SpecialTileData(4,"Income Tax", "Pay $200 or 10% of your total worth."));
+        specialTiles.add(new SpecialTileData(38,"Luxury Tax", "Pay $100."));
+        specialTiles.add(new SpecialTileData(20,"Free Parking", "No effect."));
     }
 
     // Get all special tiles

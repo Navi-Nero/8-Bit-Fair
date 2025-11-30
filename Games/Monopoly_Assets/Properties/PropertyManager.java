@@ -7,6 +7,7 @@ import java.util.List;
 // Holds all properties and lets us access them by index
 public class PropertyManager
 {
+    
     private List<PropertyData> properties;
 
     // Initialize all 40 properties with their colors, prices, and rent amounts

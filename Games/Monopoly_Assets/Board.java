@@ -5,6 +5,7 @@ import Games.Monopoly_Assets.Cards.*;
 import Games.Monopoly_Assets.Players.*;
 import Games.Monopoly_Assets.Properties.*;
 import Games.Monopoly_Assets.Special_Tiles.*;
+import java.util.ArrayList;
 
 // Main game board and controller for monopoly
 // Manages the game flow, player turns, and interactions with the board
@@ -17,6 +18,13 @@ public class Board
     private static final Dice dice = new Dice();
     private static final PropertyManager properties = new PropertyManager();
     private static final SpecialTileManager specialTiles = new SpecialTileManager();
+    private ArrayList<String> board;
+
+    public static void createBoard()
+    {
+
+
+    }
 
     // Player draws a chance card
     public static void drawChanceCard()
@@ -56,62 +64,96 @@ public class Board
     {
         PlayerData currentPlayer = players.getCurrentPlayer();
         System.out.println("\n" + currentPlayer.getPlayerName() + "'s turn!");
+        int doublesCount = 0;
 
         // Roll the dice
         int rollAmount = dice.rollDice();
+        
+        //Check if the player rolled doubles 
+        if (dice.isDoubles())
+        {
+
+            System.out.println(currentPlayer.getPlayerName() + " rolled a doubles! Rolling again." );
+            doublesCount++;
+
+            // if player rolls doubles 3x, they get sent to jail
+            if (doublesCount == 3)
+            {
+                System.out.println(currentPlayer.getPlayerName() + " rolled a doubles three times in a row! They get sent to jail." );
+
+                return;
+            }
+
+        }
+
         System.out.println(currentPlayer.getPlayerName() + " rolled: " + rollAmount);
 
         // TODO: Move player on board, handle special tiles, etc.
         // For now just show what they rolled
     }
 
+    public static void nextPlayerTurn()
+    {
+
+    }
+
+    public static void moveTiles()
+    {
+
+
+
+    }
+
+    
     // Main game loop
     public static void main(String[] args)
     {
         cards.shuffle();
         System.out.println("Welcome to Monopoly!");
 
-        int menuChoice = 0;
-
-        while (menuChoice != 5)
+        while(!players.isGameOver()) 
         {
-            menuChoice = input.getInt("\n=== MONOPOLY MENU ===\n" +
-                    "[1] Check Player Stats\n" +
-                    "[2] Player Turn\n" +
-                    "[3] Draw Card\n" +
-                    "[4] Game Info\n" +
-                    "[5] Exit\n\n");
 
-            switch (menuChoice)
+            playerTurn();
+
+            int menuChoice = 0;
+
+            while (menuChoice != 3)
             {
-                case 1:
-                    checkPlayerStats();
-                    break;
+                menuChoice = input.getInt("\n=== MONOPOLY MENU ===\n" +
+                        "[1] Check Player Stats\n" +
+                        "[2] Upgrade Property\n" +
+                        "[3] End Turn\n" +
+                        "[4] Exit for everyone\n\n");
 
-                case 2:
-                    playerTurn();
-                    break;
+                switch (menuChoice)
+                {
+                    case 1:
 
-                case 3:
-                    int cardChoice = input.getInt("Draw [1] Chance or [2] Community Chest?\n");
-                    if (cardChoice == 1)
-                        drawChanceCard();
-                    else if (cardChoice == 2)
-                        drawCommunityChestCard();
-                    break;
+                        checkPlayerStats();
+                        break;
 
-                case 4:
-                    System.out.println("\nGame Status:");
-                    System.out.println("Active players: " + players.getActivePlayerCount());
-                    break;
+                    case 2:
 
-                case 5:
-                    System.out.println("Thanks for playing Monopoly! Bye!");
-                    break;
+                        break;
 
-                default:
-                    System.out.println("Invalid choice. Try again.");
+                    case 3:
+
+                        break;
+
+                    case 4:
+
+                        System.out.println("Thanks for playing Monopoly! Bye!");
+                        break;
+
+                    default:
+
+                        System.out.println("Invalid choice. Try again.");
+                }
             }
+
+            players.nextTurn();
+
         }
     }
 }
