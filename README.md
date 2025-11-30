@@ -211,7 +211,47 @@ Round 3: Final Hand and Payout
     
     [Player is prompted to play another round or return to ArcadeSystem...]
 
-### 📊 Example Monopoly Scenario (Tax & Upgrade)
+## 🏠 Monopoly Game Guide (`Monopoly.java`)
+
+The Monopoly game in the 8-Bit-Fair system simulates the classic board game, emphasizing the roles of the **`Board`**, **`Dice`**, and **`Bank`** classes.
+
+### 1. Game Setup and Start
+
+* **Entry Point:** The game is launched via the static `main(String[] args)` method in the **`Monopoly.java`** class, which then initiates the **`Board`** controller.
+* **Visuals:** Property colors are displayed in the console using **ANSI color codes** defined in `Monopoly.java`.
+
+### 2. Player Turn Sequence
+
+Each turn is managed by the **`Board.playerTurn()`** method and follows these steps:
+
+1.  **Dice Roll:** The **`Dice.rollDice()`** method is called to generate a random number (2-12).
+2.  **Movement:** The current player's position is updated by the roll amount (`Board.currentTile()`).
+3.  **Doubles Check:** If **`Dice.isDoubles()`** is true, the player rolls again. Rolling doubles **three times in a row** sends the player to Jail.
+4.  **Tile Action:** The player interacts with the property manager, special tiles, or card decks based on the new position.
+
+### 3. Core Transactions (Handled by `Bank.java`)
+
+All financial interactions are managed by the **`Bank`** class:
+
+| Method | Role | Example Scenario |
+| :--- | :--- | :--- |
+| `playerCanBuyProperty()` | Checks if the player has sufficient funds for a purchase. | Player attempts to buy Boardwalk ($400). |
+| `playerBuyProperty()` | Transfers money from the player to the bank. | `Player.loseMoney(price)` $\rightarrow$ `Bank.addMoney(price)`. |
+| `playerPayRent()` | Facilitates direct player-to-player transfers for rent payments. | **Payer.loseMoney(rent)** $\rightarrow$ **Receiver.addMoney(rent)**. |
+| `playerPayTax()` | Transfers tax payments (e.g., Income Tax) from the player to the bank. | Player lands on Income Tax and pays $200. |
+| `isPlayerBankrupt()` | Checks if a player's money is $\le 0$ to trigger elimination. | Player reaches $0 and is removed from the game. |
+
+### 4. End of Turn Menu
+
+After the player completes their movement and mandatory tile actions, the **Monopoly Menu** appears, allowing the player to manage assets before ending their turn:
+
+| Option | Action | Notes |
+| :--- | :--- | :--- |
+| **[1] Check Player Stats** | Displays players' money, properties, and current position. | Handled by `PlayerManager.printPlayersStats()`. |
+| **[2] Upgrade Property** | Allows buying houses or hotels on owned, complete color groups. | Involves a `Bank.playerBuyProperty()` transaction. |
+| **[3] End Turn** | Passes control to the next player (`PlayerManager.nextTurn()`). | The standard way to end the turn. |
+
+### 📊 Example Scenario: Tax & Upgrade
 
 **Scenario:** Player 'Isaac' lands on Income Tax and then upgrades a property.
 
@@ -221,28 +261,27 @@ Round 1: Income Tax Payment
     Isaac moved to **Income Tax** (CurrentTile: 4). Tax Amount: $200.
 
 **Decision Point (Tax Payment):**
-Bank Check (in `Bank.java`): 
-    playerPayTax(Isaac, 200) is called.
-    
+Bank Check (in `Bank.java`): `playerPayTax(Isaac, 200)` is called.
+
 Transaction:
-    Isaac's Money: $1400 -> $1200
+    Isaac's Money: $1400 $\rightarrow$ $1200
     Bank Money increases by $200
 
 Output: "Isaac pays $200 to the Bank for Income Tax."
 
 Round 2: Property Upgrade
     [Monopoly Menu appears, prompting the player for their next action...]
-    
+
     Prompt: Enter choice (1-4)
     User Input: 2
-    
+
     Upgrade System: Isaac chooses to upgrade **Boardwalk** (Cost: $200 per house)
-    
+
     Bank Check: Isaac has $1200. Cost is $200. Transaction proceeds.
-    
+
     Output: "Boardwalk upgraded! Cost: $200. Isaac's new balance: $1000."
-    
+
     Prompt: Enter choice (1-4)
     User Input: 3
-    
+
     Output: "Isaac ends turn. Next player's turn."
