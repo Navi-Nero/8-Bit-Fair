@@ -176,13 +176,10 @@ Now updated using the **new `Process_Wordle` file** you mentioned.
 `Process_Wordle.Verify.restartGame()`  
 Player chooses to retry or return to Arcade.
 
----
-
 ## 📜 Sample Output
 
 ### Main Menu
 ```
----
 ====================================
         WELCOME TO 8-BIT FARE
 ====================================
@@ -192,8 +189,7 @@ Choose a game to play:
 3. Wordle
 4. Exit
 Enter your choice: 2
----
----
+```
 ------------------------------------
         MONOPOLY BOARD
 ------------------------------------
