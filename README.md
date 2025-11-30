@@ -285,3 +285,68 @@ Round 2: Property Upgrade
     User Input: 3
 
     Output: "Isaac ends turn. Next player's turn."
+
+## 🟩 Wordle Game Guide (`Wordle.java`)
+
+The Wordle game in the 8-Bit-Fair system provides the classic five-letter word-guessing experience, managed primarily by the **`Wordle`** class extending **`Process_Wordle`**.
+
+### 1. Game Setup and Start
+
+* **Entry Point:** The game is launched via the **`Wordle.main(String[] args)`** method.
+* **Mode Selection:** The game loop prompts the player to choose how the secret word is determined:
+    1.  **Player-Entered Word:** Another user manually enters the five-letter word to be guessed (handled by `Process_Wordle.Process.chooseMode()`).
+    2.  **Random Word:** The system selects a random word from the dictionary (handled by `Wordle_Assets.WordList.java`).
+* **Initialization:** The `Process_Wordle.Process.prepareGame()` method starts the round based on the chosen word.
+
+### 2. Guessing and Validation
+
+* **Input Handling:** User guesses are captured and validated using the **`Input_Handling`** utility to ensure the input is exactly **five letters long** and contains only alphabetic characters.
+* **Attempts:** The player is given a maximum of **six attempts** to guess the word.
+
+### 3. Feedback System (The Core Logic)
+
+After each guess, the **`Process_Wordle`** class provides feedback using **ANSI color codes** (from `styles/textColor/TextColor.java`) to guide the player: 
+
+| Feedback Color | Condition | Code Logic |
+| :--- | :--- | :--- |
+| **Green** | The letter is **correct** and in the **correct position**. | Matches the letter at the same index in the secret word. |
+| **Yellow** | The letter is **correct** but in the **wrong position**. | The letter exists elsewhere in the secret word. |
+| **Gray** | The letter is **not in the word** at all. | The letter is not found in the secret word. |
+
+### 4. Continuous Play
+
+* The game loop continues until the word is guessed or the player runs out of attempts (6 total).
+* **Restart Option:** After a game ends (win or lose), the **`Process_Wordle.Verify.restartGame()`** method prompts the player to either play another round or return to the **`ArcadeSystem`** menu.
+
+### 📊 Example Wordle Scenario
+
+**Secret Word:** C A M P S
+
+Round 1: First Guess
+    Prompt: Enter Guess (Attempt 1/6)
+    User Input: **P A N T S**
+    
+    Feedback (Processed by `Process_Wordle`):
+    P: Yellow (Correct letter, wrong spot)
+    A: Green (Correct letter, correct spot)
+    N: Gray (Not in the word)
+    T: Gray (Not in the word)
+    S: Green (Correct letter, correct spot)
+
+Round 2: Second Guess
+    Prompt: Enter Guess (Attempt 2/6)
+    User Input: **C H A N G**
+
+    Feedback:
+    C: Green (Correct letter, correct spot)
+    H: Gray (Not in the word)
+    A: Yellow (Correct letter, wrong spot)
+    N: Gray (Not in the word)
+    G: Gray (Not in the word)
+    
+Round 3: Winning Guess
+    Prompt: Enter Guess (Attempt 3/6)
+    User Input: **C A M P S**
+    
+    Output: "Congratulations! You guessed the word in 3 attempts!"
+    [System then prompts if player wants to restart or exit]
