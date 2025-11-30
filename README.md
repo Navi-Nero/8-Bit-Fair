@@ -58,62 +58,31 @@ The system provides:
 ---
 
 ## 📁 Program Structure
-
 ```
 Main/
-├── Main.java                          # Application entry point
-├── game/
-│   ├── Game.java                      # Main menu, title animation, game flow
-│   ├── GameMenu.java                  # Character creation, path selection
-│   └── BattleSystem.java              # Turn-based combat loop engine
-├── worldBuilder/
-│   ├── WorldMap.java                  # Builds West & East paths with towns
-│   └── Town.java                      # Town logic, enemy encounters, progression
-├── character/
-│   ├── Character.java                 # Abstract base class (stats, debuffs)
-│   ├── player/
-│   │   ├── Player.java                # Abstract player class (inventory, leveling)
-│   │   └── classes/                   # 5 concrete player classes
-│   │       ├── Warrior.java           # Tank class with stamina
-│   │       ├── Bruid.java             # Balanced fighter
-│   │       ├── Mage.java              # Glass cannon with MP
-│   │       ├── TagalogMonk.java       # Support/hybrid class
-│   │       └── Thief.java             # High-damage, high-speed assassin
-│   └── enemy/
-│       ├── Enemy.java                 # Abstract enemy class (loot, XP)
-│       └── subclasses/                # 31 concrete enemy types
-│           ├── TanimGuardian.java
-│           ├── HabhabBandit.java
-│           ├── LucenaPirate.java
-│           ├── PortRat.java
-│           ├── HarborSentinel.java    # Miniboss
-│           ├── BakeryGremlin.java
-│           ├── HeritageWraith.java
-│           ├── DonMariano.java        # West path final boss
-│           ├── QueenAmihan.java       # East path final boss
-│           └── [21 more...]
-├── item/
-│   ├── Item.java                      # Abstract item base class
-│   └── [23 concrete items]
-│       ├── Bibingka.java              # +25 HP, remove debuffs
-│       ├── Lambanog.java              # Spirit drink
-│       ├── PugonCoffee.java           # Coffee item
-│       └── [20 more...]
-└── styles/
-    ├── animationHub/
-    │   ├── TypeWriter.java            # Typewriter text animation
-    │   └── LoadingDots.java           # Loading animation
-    ├── textColor/
-    │   └── TextColorHub.java          # ANSI color codes (RED, GREEN, YELLOW, etc.)
-    ├── printAlignmentHub/
-    │   └── CenterHub.java             # Text centering & right alignment
-    └── clearScreen/
-        └── ClearScreen.java           # Cross-platform terminal clearing
-```
-
----
-
-
+8-Bit-Fare/
+├── Main.java                                 # Application entry point, launches arcade menu
+├── Games/
+│   ├── ArcadeSystem.java                     # Central game hub: choose Poker, Monopoly, or Wordle
+│   ├── Poker/
+│   │   ├── Poker.java                        # Poker game launcher
+│   │   ├── MyPokerGame.java                  # Handles Poker gameplay logic
+│   │   └── Poker_Assets/                     # Additional Poker resources (cards, helpers, etc.)
+│   ├── Monopoly/
+│   │   ├── Monopoly.java                     # Monopoly game launcher
+│   │   ├── Board.java                        # Monopoly board controller + tile management
+│   │   ├── Dice.java                         # Dice roller and doubles handling
+│   │   └── Bank.java                         # Manages money, rent, and transactions
+│   └── Wordle/
+│       ├── Wordle.java                       # Wordle game launcher
+│       ├── Process_Wordle.java               # UPDATED FILE — Word handling, validation, comparison
+│       └── Wordle_Assets/                    # Word lists, helpers, display utils
+├── utils/
+│   ├── Input_Handling.java                   # User input manager (validation, parsing, safety)
+│   ├── Screen.java                           # Screen clearing & formatting utilities
+│   └── TextColor.java                        # ANSI color codes for stylized console output
+├── out/                                      # Build output (generated during compilation)
+└── README.md                                  # Project documentation
 ## 🎮 Gameplay Guide
 
 ### **Starting the Arcade**
