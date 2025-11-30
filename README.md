@@ -179,6 +179,9 @@ Player chooses to retry or return to Arcade.
 ---
 
 ## 📜 Sample Output
+
+### Main Menu
+```
 ---
 ====================================
         WELCOME TO 8-BIT FARE
@@ -224,8 +227,11 @@ Enter raise amount: 50
 You raised by $50. New pot: $100
 
 Returning to Arcade Menu...
----
----
+```
+```
+
+```
+```
 ====================================
              WORDLE
 ====================================
@@ -241,7 +247,8 @@ Congratulations! You guessed the word 'PLATE' in 4 attempts!
 Play again? (Y/N): N
 
 Returning to Arcade Menu...
----
+```
+
 
 ## 👤 Author & Acknowledgement
 
