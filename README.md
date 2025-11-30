@@ -210,3 +210,39 @@ Round 3: Final Hand and Payout
     Final Balance: $950 + $450 = $1400
     
     [Player is prompted to play another round or return to ArcadeSystem...]
+
+### 📊 Example Monopoly Scenario (Tax & Upgrade)
+
+**Scenario:** Player 'Isaac' lands on Income Tax and then upgrades a property.
+
+Round 1: Income Tax Payment
+    Isaac's turn!
+    Isaac rolled: 5
+    Isaac moved to **Income Tax** (CurrentTile: 4). Tax Amount: $200.
+
+**Decision Point (Tax Payment):**
+Bank Check (in `Bank.java`): 
+    playerPayTax(Isaac, 200) is called.
+    
+Transaction:
+    Isaac's Money: $1400 -> $1200
+    Bank Money increases by $200
+
+Output: "Isaac pays $200 to the Bank for Income Tax."
+
+Round 2: Property Upgrade
+    [Monopoly Menu appears, prompting the player for their next action...]
+    
+    Prompt: Enter choice (1-4)
+    User Input: 2
+    
+    Upgrade System: Isaac chooses to upgrade **Boardwalk** (Cost: $200 per house)
+    
+    Bank Check: Isaac has $1200. Cost is $200. Transaction proceeds.
+    
+    Output: "Boardwalk upgraded! Cost: $200. Isaac's new balance: $1000."
+    
+    Prompt: Enter choice (1-4)
+    User Input: 3
+    
+    Output: "Isaac ends turn. Next player's turn."
