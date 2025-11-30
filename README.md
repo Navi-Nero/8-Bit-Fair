@@ -190,6 +190,7 @@ Choose a game to play:
 4. Exit
 Enter your choice: 2
 ```
+```
 ------------------------------------
         MONOPOLY BOARD
 ------------------------------------
