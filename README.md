@@ -100,6 +100,60 @@ This is achieved through a modular and scalable design, where each game is devel
   - `Wordle` contains `WordList` and `PlayerGuess` objects  
 - Main arcade menu combines multiple `Game` objects to provide a unified experience
 
- ## 🧱 Program Structure
+## 🎮 Gameplay Guide
 
-8-Bit-Fair/ ├── Main.java # Application entry point, launches the arcade menu ├── arcade/ # Main system controller │ ├── ArcadeSystem.java # Controls the central game loop and menu navigation │ ├── utilities/ # Shared helper functions │ └── Input_Handling.java # Handles user input and validation across ALL games │ ├── games/ # Main package containing the three games │ ├── monopoly/ # Monopoly game package │ │ ├── Monopoly.java # Entry point to start Monopoly game │ │ ├── Board.java # Main board setup, game controller, and display │ │ ├── Dice.java # Dice roller and doubles checker │ │ └── assets/ # Assets and models for Monopoly │ │ ├── Properties.java # Individual property data │ │ ├── Card.java # Chance & Community Chest card logic │ │ └── PlayerData.java # Player info (name, money, position) │ │ │ ├── poker/ # Poker game package │ │ ├── Poker.java # Entry point to start Poker game │ │ ├── MyPokerGame.java # Manages poker gameplay, hands, and betting flow │ │ └── assets/ # Assets and models for Poker │ │ ├── Card.java # Represents a playing card │ │ └── Hand.java # Manages a player's hand of cards │ │ │ └── wordle/ # Wordle game package │ ├── Wordle.java # Entry point to start Wordle game │ ├── Process_Wordle.java # Base class: Handles core word logic, validation, and feedback │ └── assets/ # Assets and models for Wordle │ └── WordList.java # Loads and manages the dictionary of valid words │ └── styles/ # Shared styling and utility classes ├── animationHub/ # Classes for console animations │ ├── TypeWriter.java # Typewriter text animation │ └── LoadingDots.java # Loading animation ├── textColor/ # Classes for colored text output │ └── TextColor.java # ANSI color codes (RED, GREEN, YELLOW, etc.) ├── printAlignmentHub/ # Classes for text formatting │ └── PrintAlignUtils.java # Text centering & right alignment └── clearScreen/ # Classes for cleaning the console └── ClearScreen.java # Cross-platform terminal clearing
+### Starting the Arcade
+
+Run `java -cp out Games.ArcadeSystem`
+View the central menu with choices for three games
+Choose: (1) Poker, (2) Monopoly, (3) Wordle, (4) Exit
+
+### Core Utilities and Input
+
+Centralized Input: `Input_Handling.java` ensures all inputs are validated
+Game Flow: `ArcadeSystem` manages the overall loop; individual game classes control their flow
+
+### Game Instructions
+
+#### 🃏 Poker Game
+
+Flow: `MyPokerGame.play()` handles dealing, betting, and hand resolution
+Configuration: Starts with default settings but accepts custom configuration
+
+#### 🏠 Monopoly Game
+
+Setup: Requires at least two players
+Display: Property colors are shown using **ANSI color codes**
+Player Turn:
+( 1 ) Roll Dice - `Dice.rollDice()` is called, player moves
+( 2 ) Check for Doubles - Three consecutive doubles sends player to jail
+( 3 ) Bank Transaction - `Bank.java` handles all purchases, rent, and taxes
+( 4 ) Monopoly Menu - Allows player to Check Stats, Upgrade Property, or End Turn
+
+#### 🟩 Wordle Game
+
+Starting Mode: Choose between another player entering the word or generating a random word
+Logic: `Wordle` class extends `Process_Wordle` for core game logic
+Continuous Play: `Verify.restartGame()` prompts player for another round
+
+### 📊 Example Monopoly Scenario
+
+Warrior enters Lucena Town
+    └─ Encounters: Port Rat, Lucena Pirate (miniboss)
+
+Round 1: Player Isaac vs Unowned Property
+    Isaac lands on Mediterranean Avenue (Price: $60)
+    
+    Bank Check (in `Bank.java`): playerCanBuyProperty(Isaac, 60) -> TRUE
+    
+    Prompt: Buy Mediterranean Avenue for $60? (Y/N)
+    User Input: Y
+    
+    Bank Transaction:
+        playerBuyProperty(Isaac, 60):
+        Isaac's Money: 1500 -> 1440
+        Bank Money increases by $60
+        
+    [Monopoly Menu appears for player's next action...]
+
+---
