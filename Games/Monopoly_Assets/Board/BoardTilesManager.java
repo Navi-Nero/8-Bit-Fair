@@ -13,26 +13,30 @@ public class BoardTilesManager
     private List<BoardTilesData> tiles; // ordered list of all 40 tiles
 
     public BoardTilesManager() 
+{
+    propertyManager = new PropertyManager();
+    specialTileManager = new SpecialTileManager();
+    tiles = new ArrayList<>(40);
+
+    for (int i = 0; i < 40; i++) 
     {
-
-        propertyManager = new PropertyManager();
-        specialTileManager = new SpecialTileManager();
-        tiles = new ArrayList<>(40);
-
-        // Build ordered board (indexes 0–39)
-        for (int i = 0; i < 40; i++) 
-    {
-
         BoardTilesData tile = propertyManager.getPropertyByIndex(i);
 
-        if (tile == null)
+        if (tile == null) 
         {
             tile = specialTileManager.getTileByIndex(i);
         }
 
-        tiles.add(tile); 
+        // FIX: If still null → create a blank placeholder tile
+        if (tile == null)
+        {
+            tile = new EmptyTile(i);
+        }
+
+        tiles.add(tile);
+        
     }
-    }
+}
 
     // Get tile by board index
     public BoardTilesData getTileByBoardIndex(int boardIndex) 

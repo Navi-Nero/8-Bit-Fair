@@ -1,5 +1,6 @@
 package Games.Monopoly_Assets.Players;
 
+import Games.Monopoly_Assets.Cards.CardData;
 import Games.Monopoly_Assets.Properties.PropertyData;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ public class PlayerData
     private int jailTurns;          
     private boolean bankrupt;       
     private List<PropertyData> assets; 
-    private List<String> keepableCards; 
+    private List<CardData> keepableCards; 
 
     // Constructor
     public PlayerData(int index, String name, int startingMoney, boolean inJail, boolean bankrupt) 
@@ -69,11 +70,6 @@ public class PlayerData
         return assets;
     }
 
-    public List<String> getKeepableCards() 
-    {
-        return keepableCards;
-    }
-
     // --- Money management ---
     public void addMoney(int amount) 
     {
@@ -94,6 +90,18 @@ public class PlayerData
     public void setBoardIndex(int index) 
     {
         this.boardIndex = index;
+    }
+
+    public void moveSteps(int steps) 
+    {
+        int oldIndex = boardIndex;
+        boardIndex = (boardIndex + steps) % 40;
+
+        if (boardIndex < oldIndex) 
+        {
+            addMoney(200); // passed GO
+            System.out.println(playerName + " passed GO! +$200");
+        }
     }
 
     // --- Jail management ---
@@ -128,19 +136,14 @@ public class PlayerData
     }
 
     // --- Card management ---
-    public void addKeepableCard(String cardName) 
+    public void addKeepableCard(CardData card) 
     {
-        keepableCards.add(cardName);
+        keepableCards.add(card);
     }
 
-    public boolean useKeepableCard(String cardName) 
+    public boolean useKeepableCard(CardData card) 
     {
-        if (keepableCards.contains(cardName)) 
-        {
-            keepableCards.remove(cardName);
-            return true;
-        }
-        return false;
+        return keepableCards.remove(card);
     }
 
     @Override

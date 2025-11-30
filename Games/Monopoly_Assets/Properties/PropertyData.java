@@ -1,25 +1,26 @@
 package Games.Monopoly_Assets.Properties;
 
 import Games.Monopoly_Assets.Board.BoardTilesData;
+import Games.Monopoly_Assets.Players.PlayerData;
 
-// Represents a single property on the board (street, railroad, utility, etc)
-public class PropertyData implements BoardTilesData
-{
-    // Property details that don't change
-    private int propertyIndex;     // board position (0–39)
-    private String propertyName;   // e.g., "Boardwalk"
-    private String propertyType;   // e.g., "Street", "Railroad", "Utility"
-    private int propertyPrice;     // purchase cost
-    private int[] propertyRent;    // rent values depending on houses/hotel
-    private int houseCount; // 0–4 houses, 5 = hotel
+public class PropertyData implements BoardTilesData {
 
-    
-    // Mutable property state
-    private String propertyOwner;  // player name or ID
+    // Fixed details
+    private final int propertyIndex;
+    private final String propertyName;
+    private final String propertyType;
+    private final int propertyPrice;
+    private final int[] propertyRent;
 
-    // Create a property with all its details
-    public PropertyData(int index, String name, String type, int price, int[] rent, String owner)
+    // Houses: 0–4, 5 = hotel
+    private int houseCount;
+
+    // owner (null = bank/unowned)
+    private PlayerData propertyOwner;
+
+    public PropertyData(int index, String name, String type, int price, int[] rent, PlayerData owner) 
     {
+
         this.propertyIndex = index;
         this.propertyName = name;
         this.propertyType = type;
@@ -27,90 +28,68 @@ public class PropertyData implements BoardTilesData
         this.propertyRent = rent;
         this.propertyOwner = owner;
         this.houseCount = 0;
-        
+
     }
 
-    // --- BoardData interface methods ---
-     @Override
+    // --- BoardTilesData Interface ---
+    @Override
     public int getBoardIndex() 
     {
-        return this.propertyIndex;
+        return propertyIndex;
     }
 
     @Override
     public String getName() 
     {
-        return this.getPropertyName();
+        return propertyName;
     }
 
     @Override
     public String getDescription() 
     {
-        // You can customize this string as needed
-        return this.getPropertyType() + " costing $" + this.getPropertyPrice();
+        return propertyType + " costing $" + propertyPrice;
     }
 
-    // --- Property-specific methods ---
+    // --- Property Methods ---
+    public boolean isOwned() 
+    {
+        return propertyOwner != null;
+    }
+
+    public PlayerData getPropertyOwner() 
+    {
+        return propertyOwner;
+    }
+
+    public void setPropertyOwner(PlayerData owner) 
+    {
+        this.propertyOwner = owner;
+    }
+
+    public void clearOwnership() 
+    {
+        this.propertyOwner = null;
+        this.houseCount = 0;
+    }
+
     public String getPropertyName()
     {
         return propertyName;
     }
 
-    public String getPropertyType()
-    {
-        return propertyType;
-    }
-
-    public int getPropertyPrice()
+    public int getPropertyPrice() 
     {
         return propertyPrice;
     }
 
-    public String getPropertyOwner()
+    public String getPropertyType() 
     {
-        return propertyOwner;
+        return propertyType;
     }
 
     public int getHouseCount() 
     {
         return houseCount;
-    }
-
-    public void addHouse() 
-    {
-        if (houseCount < 5) 
-        {
-            houseCount++;
-        }
-    }
-
-    public void removeHouse() 
-    {
-        if (houseCount > 0) 
-        {
-            houseCount--;
-        }
-    }
-
-    // Rent depends on how many houses/hotel are built
-    public int getRent(int houses) 
-    {
-        if (houses < 0 || houses >= propertyRent.length) 
-        {
-            throw new IllegalArgumentException("Invalid number of houses/hotel");
-        }
-        return propertyRent[houses];
-    }
-
-    // When someone buys the property, set the owner
-    public void setPropertyOwner(String newOwner)
-    {
-        this.propertyOwner = newOwner;
-    }
-
-    public boolean hasHotel() 
-    {
-        return houseCount == 5;
     }
 
     public void addHouseOrHotel() 
@@ -119,5 +98,24 @@ public class PropertyData implements BoardTilesData
         {
             houseCount++;
         }
+    }
+
+    public boolean sellHouseOrHotel() 
+    {
+        if (houseCount > 0) {
+            houseCount--;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean hasHotel() 
+    {
+        return houseCount == 5;
+    }
+
+    public int getRent(int houses) 
+    {
+        return propertyRent[houses];
     }
 }
