@@ -31,3 +31,15 @@
     <img src="https://img.shields.io/badge/👤_Author_Acknowledgement-1E90FF?style=for-the-badge">
   </a>
 </p>
+
+## 📖 Overview
+
+This Java-based console application serves as a central arcade hub featuring three complete, fully-functional games: **Poker**, **Monopoly**, and **Wordle**.
+
+The project's primary objective is to demonstrate robust **Object-Oriented Programming (OOP)** principles, including:
+* **Encapsulation**
+* **Abstraction**
+* **Inheritance**
+* **Polymorphism**
+
+This is achieved through a modular and scalable design, where each game is developed in separate classes and packages.
