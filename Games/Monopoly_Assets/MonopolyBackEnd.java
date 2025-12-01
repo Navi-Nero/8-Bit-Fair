@@ -129,6 +129,8 @@ public class MonopolyBackEnd
                 System.out.println("This shouldn't appear. What the fuck did you do.");
         }
 
+        // TODO: Apply fixes - doesnt invoke "Advance to [Tile]" 
+
         if (bank.isPlayerBankrupt(player)) 
         {
             players.setToBankrupt(player);
@@ -152,7 +154,7 @@ public class MonopolyBackEnd
 
         }
 
-        System.out.println("\n" + currentPlayer.getPlayerName() + "'s turn!");
+        System.out.println("\n" + currentPlayer.getPlayerName() + "'s turn!\n");
 
         // If in jail: attempt to roll doubles to get out, up to 3 attempts. If roll doubles, released and move normally.
         if (currentPlayer.isInJail()) 
@@ -168,7 +170,7 @@ public class MonopolyBackEnd
                 currentPlayer.setInJail(false);
                 currentPlayer.setBoardIndex((currentPlayer.getBoardIndex() + dice.getLastRoll()) % 40);
 
-                System.out.println(currentPlayer.getPlayerName() + " rolled doubles and is released from Jail! Moving " + dice.getLastRoll() + " spaces.");
+                System.out.println(currentPlayer.getPlayerName() + " rolled doubles and is released from Jail! Moving " + dice.getLastRoll() + " spaces.\n");
                 BoardTilesData landed = board.getTileByBoardIndex(currentPlayer.getBoardIndex());
 
                 if (landed != null) 
@@ -190,7 +192,7 @@ public class MonopolyBackEnd
                     System.out.println(currentPlayer.getPlayerName() + " failed to roll doubles in 3 attempts. Paying $50 bail and released.");
                     bank.chargePlayer(currentPlayer, 50);
                     currentPlayer.setInJail(false);
-                    // then allow a normal roll and move
+
                     int roll = dice.rollDice();
                     System.out.println(currentPlayer.getPlayerName() + " rolled: " + roll);
                     movePlayer(currentPlayer, roll);
@@ -245,7 +247,7 @@ public class MonopolyBackEnd
 
             }
         }
-        
+
         movePlayer(currentPlayer, roll);
 
     }
@@ -281,7 +283,7 @@ public class MonopolyBackEnd
 
         }
 
-        System.out.println("\n" + player.getPlayerName() + " landed on: " + tile.getName() + " (" + tile.getDescription() + ")");
+        System.out.println("\n" + player.getPlayerName() + " landed on: " + tile.getName() + " (" + tile.getDescription() + ")\n");
 
         resolveTile(player, tile);
     }
@@ -319,7 +321,7 @@ public class MonopolyBackEnd
         if (owner == null) 
         {
 
-            System.out.println(property.getPropertyName() + " is unowned. Price: $" + property.getPropertyPrice());
+            System.out.println(property.getPropertyName() + " is unowned. Price: $" + property.getPropertyPrice() + "\n");
 
             boolean buy = input.getYesNo("Do you want to buy it? (y/n): ");
 
@@ -481,7 +483,6 @@ public class MonopolyBackEnd
             return 0;
 
         }
-
     }
 
     // ---------- Special tile handling ----------

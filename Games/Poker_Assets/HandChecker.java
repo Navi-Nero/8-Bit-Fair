@@ -5,6 +5,31 @@ import java.util.*;
 // Returns a number representing the hand type
 public class HandChecker {
 
+    /*******************************
+     * 
+        High card: The lowest hand. Just whatever your highest card is (ace kigh, king high)
+
+        One pair: You have two of the same card (two 2s, two aces, etc)
+
+        Two pair: You have two different pairs (two 2s and two aces)
+
+        Three of a Kind: You have three of the same card (three kings, three 2s, etc)
+
+        Straight: All cards are in order (2,3,4,5,6 or 8,9,10,J,Q)
+
+        Flush: All cards are the same suit (All hearts, all spades)
+
+        Full House: A three of a kind along with a pair (three kings and two 9s, three aces and two queens)
+
+        Four of a Kind: Four of the same card (four 7s, four kings)
+
+        Straight Flush: Cards are sequential, and are all the same suit (7,8,9,10,J all hearts)
+
+        Royal Flush: A straight flush that consists of 10,J,Q,K,A. Not really a separate hand, but it still trumps other straight flushes.
+        
+     * 
+     *******************************/
+
     // Figures out what hand type the player has
     // hand - the 5 cards to check
     // returns 0-9, where 9 = losing hand

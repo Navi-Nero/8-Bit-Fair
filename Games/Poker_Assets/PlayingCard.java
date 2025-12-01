@@ -1,9 +1,6 @@
 package Games.Poker_Assets;
 import java.util.*;
 
-/* A Console based poker game by Dana Muise (SFSU 913048115) 6/2016
- * This is the Playing card class.
- */
 class PlayingCardException extends Exception {
 
     /* Constructor to create a PlayingCardException object */

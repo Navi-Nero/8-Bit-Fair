@@ -28,7 +28,7 @@ public class Eight_Bit_Fare
                 case 1:
 
                     System.out.println("\nStarting Poker...\n");
-                    Games.Poker.main(args);     // Starts Poker
+                    Games.Poker.main(args);     // Starts Poker1
                     break;
 
                 case 2:

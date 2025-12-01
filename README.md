@@ -1,5 +1,5 @@
 <div align="center">
-  <h1><b>8-Bit Fare</b></h1>
+  <h1><b>8-Bit Fair</b></h1>
   <h3><b>Multi-Game Java Console Arcade Showcasing OOP Principles</b></h3>
 
   <b>IT-2108:</b><br>
@@ -22,7 +22,7 @@
 
 ## 📖 Overview
 
-**8-Bit Fare** is a console-based mini-arcade system featuring three classic-inspired games — **Poker**, **Monopoly**, and **Wordle** — all integrated into one unified Java application.  
+**8-Bit Fair** is a console-based mini-arcade system featuring three classic-inspired games — **Poker**, **Monopoly**, and **Wordle** — all integrated into one unified Java application.  
 Built with strong Object-Oriented Programming (OOP) principles, the project demonstrates how multiple independent games can run seamlessly inside one system using modular architecture, reusable classes, and clean code design.
 
 The system provides:
@@ -31,7 +31,7 @@ The system provides:
 - Shared utilities for input handling, animations, text styling, and clearing the screen  
 - An organized, expandable structure for future game additions  
 
-**8-Bit Fare** highlights teamwork and serves as a practical demonstration of applying OOP in real-world multi-module Java applications.
+**8-Bit Fair** highlights teamwork and serves as a practical demonstration of applying OOP in real-world multi-module Java applications.
 
 ---
 
@@ -62,7 +62,7 @@ The system provides:
 - User-friendl y exit option from the main menu  
 - Graceful shutdown of input handler
 
-🏗️ **OOP Concepts Applied in 8-Bit Fare**
+🏗️ **OOP Concepts Applied in 8-Bit Fair**
 
 **1. Inheritance**  
 - `Game` (abstract) → `Poker`, `Monopoly`, `Wordle` (concrete classes)  
@@ -192,7 +192,7 @@ Player chooses to retry or return to Arcade.
 ### Main Menu
 ```
 ====================================
-        WELCOME TO 8-BIT FARE
+        WELCOME TO 8-BIT FAIR
 ====================================
 Choose a game to play:
 1. Poker
