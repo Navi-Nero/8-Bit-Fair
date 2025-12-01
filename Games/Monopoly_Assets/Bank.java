@@ -82,4 +82,6 @@ public class Bank
     {
         return player.getPlayerMoney() <= 0;
     }
+
+    // Note there are still some features missing, we are just too tired to continue, total days of coding for 16hrs: 6 days
 }

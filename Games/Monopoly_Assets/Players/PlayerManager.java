@@ -7,11 +7,10 @@ import java.util.LinkedList;
 // Manages all players in the game
 public class PlayerManager {
 
-    private final Input_Handling input;   // injected from MonopolyBackEnd
+    private final Input_Handling input; 
     private LinkedList<PlayerData> players;
     private int currentPlayerIndex;
 
-    // Constructor now requires Input_Handling
     public PlayerManager(Input_Handling input) {
         this.input = input;
         this.players = new LinkedList<>();

@@ -6,9 +6,9 @@ import Games.Monopoly_Assets.Board.BoardTilesData;
 // Represents a single special tile (Go, Jail, Taxes, etc)
 public class SpecialTileData implements BoardTilesData 
 {
-    private int tileIndex;        // board position (0–39)
-    private String tileName;      // e.g., "Go", "Jail", "Chance"
-    private String tileDescription; // effect of the tile
+    private int tileIndex;
+    private String tileName;  
+    private String tileDescription; 
 
     // Create a special tile with a name and what it does
     public SpecialTileData(int index, String name, String description)

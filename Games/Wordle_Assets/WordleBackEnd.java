@@ -153,7 +153,6 @@ public class WordleBackEnd {
                     case "NO":
 
                         System.out.println("\nAww! Until next time!");
-                        input.close();
 
                     return false;
 

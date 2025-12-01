@@ -74,7 +74,7 @@ It serves as a practical demonstration of how structured programming and creativ
 - Clear prompts for easy navigation  
 
 **Exit System**  
-- User-friendly exit option from the main menu  
+- User-friendl y exit option from the main menu  
 - Graceful shutdown of input handler
 
 🏗️ **OOP Concepts Applied in 8-Bit Fare**
@@ -106,17 +106,6 @@ It serves as a practical demonstration of how structured programming and creativ
 - Main arcade menu combines multiple `Game` objects to provide a unified experience
 
 ## 🎮 Gameplay Guide
-
-### Starting the Arcade
-
-Run `java -cp out Games.ArcadeSystem`
-View the central menu with choices for three games
-Choose: (1) Poker, (2) Monopoly, (3) Wordle, (4) Exit
-
-### Core Utilities and Input
-
-Centralized Input: `Input_Handling.java` ensures all inputs are validated
-Game Flow: `ArcadeSystem` manages the overall loop; individual game classes control their flow
 
 ### Game Instructions
 

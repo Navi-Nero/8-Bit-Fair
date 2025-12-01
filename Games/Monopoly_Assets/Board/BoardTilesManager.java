@@ -27,7 +27,7 @@ public class BoardTilesManager
                 tile = specialTileManager.getTileByIndex(i);
             }
 
-            // If still null → create a blank placeholder tile
+            // If null create a blank placeholder tile
             if (tile == null)
             {
                 tile = new EmptyTile(i);
@@ -54,7 +54,6 @@ public class BoardTilesManager
         return tiles;
     }
 
-    // Convenience access
     public PropertyManager getPropertyManager() 
     {
         return propertyManager; 

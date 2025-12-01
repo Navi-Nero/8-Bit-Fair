@@ -5,14 +5,11 @@ import Games.Monopoly_Assets.Players.PlayerData;
 
 public class PropertyData implements BoardTilesData {
 
-    // Fixed details
     private final int propertyIndex;
     private final String propertyName;
     private final String propertyType;
     private final int propertyPrice;
     private final int[] propertyRent;
-
-    // Houses: 0–4, 5 = hotel
     private int houseCount;
 
     // owner (null = bank/unowned)

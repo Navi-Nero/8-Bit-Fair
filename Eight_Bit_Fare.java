@@ -7,7 +7,7 @@ public class Eight_Bit_Fare
 
         int gameChoice = 0;
 
-        System.out.println("\n╔═════════════════════════════╗");
+        System.out.println("\n╔══════════════════════════════╗");
         System.out.println("║     WELCOME TO 8-BIT FAIR    ║");
         System.out.println("╚══════════════════════════════╝");
 

@@ -202,16 +202,15 @@ public class MonopolyBackEnd
         }
 
         // Normal turn: handle up to 3 consecutive doubles
+        int roll = 0;
         int doublesCount = 0;
         boolean continueRolling = true;
 
         while (continueRolling) 
         {
 
-            int roll = dice.rollDice();
+            roll = dice.rollDice();
             System.out.println(currentPlayer.getPlayerName() + " rolled: " + roll);
-
-            movePlayer(currentPlayer, roll);
 
             if (bank.isPlayerBankrupt(currentPlayer))
             {
@@ -246,8 +245,9 @@ public class MonopolyBackEnd
 
             }
         }
+        
+        movePlayer(currentPlayer, roll);
 
-        // don't advance the turn here — UI will advance when the player selects End Turn
     }
 
     private void sendPlayerToJail(PlayerData player) 

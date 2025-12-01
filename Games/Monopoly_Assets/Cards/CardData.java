@@ -1,6 +1,6 @@
 package Games.Monopoly_Assets.Cards;
 
-// Represents a single card in Monopoly (Chance or Community Chest)
+// Represents a single card (Chance or Community Chest)
 public class CardData {
     private String description;
     private boolean keepable;

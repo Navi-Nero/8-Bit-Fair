@@ -24,7 +24,7 @@ public class PropertyManager {
 
         properties = new ArrayList<>();
 
-        // --- COLOR PROPERTIES ---
+        // --- PROPERTIES ---
         addProperty(1,  colorize(BLACK, "Mediterranean Avenue"), "Black", 60,  new int[]{2, 10, 30, 90, 160, 250});
         addProperty(3,  colorize(BLACK, "Baltic Avenue"),        "Black", 60,  new int[]{4, 20, 60, 180, 320, 450});
 
@@ -55,7 +55,7 @@ public class PropertyManager {
         addProperty(37, colorize(BLUE, "Park Place"),             "Dark Blue", 350, new int[]{35, 175, 500, 1100, 1300, 1500});
         addProperty(39, colorize(BLUE, "Boardwalk"),              "Dark Blue", 400, new int[]{50, 200, 600, 1400, 1700, 2000});
 
-        // RAILROADS & UTILITIES (no color)
+        // RAILROADS & UTILITIES
         addProperty(5,  "Reading Railroad",      "Railroad", 200, new int[]{25, 50, 100, 200});
         addProperty(15, "Pennsylvania Railroad", "Railroad", 200, new int[]{25, 50, 100, 200});
         addProperty(25, "B&O Railroad",          "Railroad", 200, new int[]{25, 50, 100, 200});
@@ -70,12 +70,12 @@ public class PropertyManager {
         private String colorize(String colorCode, String name) {
         return colorCode + name + RESET;
     }
-    // Helper to add properties
+    
     private void addProperty(int index, String name, String type, int price, int[] rent) {
         properties.add(new PropertyData(index, name, type, price, rent, null));
     }
 
-    // MAIN ACCESSOR: return property at board index
+    
     public PropertyData getPropertyByIndex(int boardIndex) {
         for (PropertyData p : properties) {
             if (p.getBoardIndex() == boardIndex) {
@@ -89,7 +89,6 @@ public class PropertyManager {
         return properties;
     }
 
-    // Count how many railroads a player owns
     public int countRailroadsOwned(PlayerData player) {
         int count = 0;
         for (PropertyData p : properties) {
@@ -100,7 +99,6 @@ public class PropertyManager {
         return count;
     }
 
-    // Count utilities owned
     public int countUtilitiesOwned(PlayerData player) {
         int count = 0;
         for (PropertyData p : properties) {
